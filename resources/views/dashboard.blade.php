@@ -31,9 +31,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-tasks"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3"> <sup>Aspem</sup></div>
             </a>
 
             <!-- Divider -->
@@ -736,13 +736,13 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset(' sadmin2/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset(' sadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset(' sadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset(' sadmin2/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('sadmin2/vendor/chart.js/Chart.min.js') }} "></script>
-    <script src="{{ asset(' sadmin2/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset(' sadmin2/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('sadmin2/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('sadmin2/js/demo/chart-pie-demo.js') }}"></script>
 
 </body>
 
