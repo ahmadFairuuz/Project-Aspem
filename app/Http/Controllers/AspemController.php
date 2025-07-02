@@ -8,6 +8,6 @@ class AspemController extends Controller
 {
     public function index(){
         $aspem = Aspem::all();
-        return view('label',compact('aspem'));
+        return view('label.label',compact('aspem'));
     }
 }
