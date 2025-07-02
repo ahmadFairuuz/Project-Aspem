@@ -10,4 +10,8 @@ class AspemController extends Controller
         $aspem = Aspem::all();
         return view('label.label',compact('aspem'));
     }
+    public function create()
+    {
+        return view('label.create');
+    }
 }

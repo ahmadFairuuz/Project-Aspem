@@ -367,7 +367,7 @@
  
         <div class="card mb-4">
     <div class="card-header">
-        <a href="{{ route('aspem.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
+        <a href="{{ route('label.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -392,8 +392,8 @@
                     <td>{{ $item->tanggal_barbuk }}</td>
                     <td>{{ $item->keterangan }}</td>
                     <td>
-                        <a href="{{ route('aspem.show', $item->id) }}" class="btn btn-sm btn-secondary">Show</a>
-                        <a href="{{ route('aspem.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ route('label.create', $item->id) }}" class="btn btn-sm btn-secondary">Show</a>
+                        <a href="{{ route('label.create', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}">
                             Hapus
                         </button>

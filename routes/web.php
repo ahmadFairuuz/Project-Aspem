@@ -11,10 +11,5 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get("/", [AspemController::class, 'index'])->name('index.index');
-
-Route::resource('aspem', AspemController::class);
+Route::get('/label', [AspemController::class, 'index'])->name('label.index');
+route::get('/label/create', [AspemController::class, 'create'])->name('label.create');
