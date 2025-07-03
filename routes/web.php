@@ -7,7 +7,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login');
 });
 
