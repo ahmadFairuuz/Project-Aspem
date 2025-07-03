@@ -16,3 +16,4 @@ route::get('/label/create', [AspemController::class, 'create'])->name('label.cre
 route::post('/label/store', [AspemController::class, 'store'])->name('label.store');
 route::get('/label/edit{id}', [AspemController::class, 'edit'])->name('label.edit');
 route::put('/label/update{id}', [AspemController::class, 'update'])->name('label.update');
+route::delete('/label/delete{id}', [AspemController::class, 'destroy'])->name('label.destroy');
