@@ -14,7 +14,7 @@
         <!-- Navbar Atas (Simplified) -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Nama Website -->
-            <a class="navbar-brand ps-3" href="index.html">Sika</a>
+            <a class="navbar-brand ps-3" href="{{ route('dashboard' ) }}">Dashboard</a>
             
         
             

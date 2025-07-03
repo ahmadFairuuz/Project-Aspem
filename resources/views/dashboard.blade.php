@@ -46,6 +46,11 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+             <li class="nav-item active">
+                <a class="nav-link" href="{{ route('label.index') }}" >
+                    <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
+                    <span>Label</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -748,63 +753,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container-fluid px-4">
-        <h1 class="mt-4">Dashboard</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
- 
-        <div class="card mb-4">
-    <div class="card-header">
-        <a href="{{ route('aspem.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
-    </div>
-    <div class="card-body">
-        <table id="datatablesSimple">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Register Perkara</th>
-                    <th>Barang Bukti</th>
-                    <th>Tanggal Barbuk</th>
-                    <th>Keterangan</th>
-                    <th width="180px">Action</th>
-                </tr>
-            </thead>
-            <tfoot>
-            </tfoot>
-            <tbody>
-                @foreach ($aspem as $item)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->register_perkara }}</td>
-                    <td>{{ $item->barang_bukti }}</td>
-                    <td>{{ $item->tanggal_barbuk }}</td>
-                    <td>{{ $item->keterangan }}</td>
-                    <td>
-                        <a href="{{ route('aspem.show', $item->id) }}" class="btn btn-sm btn-secondary">Show</a>
-                        <a href="{{ route('aspem.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}">
-                            Hapus
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
-    </div>
-@endsection

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Models\Aspem;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AspemController extends Controller
 {
@@ -14,4 +15,36 @@ class AspemController extends Controller
     {
         return view('label.create');
     }
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'register_perkara' => 'required|max:100',
+            'barang_bukti' => 'required|max:255',
+            'tanggal_barbuk' => 'required|date',
+            'keterangan' => 'nullable|string',
+        ],
+        [
+            'register_perkara.required' => 'Register perkara wajib diisi',
+            'register_perkara.max' => 'Maksimal 100 karakter',
+            'barang_bukti.required' => 'Barang bukti wajib diisi',
+            'barang_bukti.max' => 'Maksimal 255 karakter',
+            'tanggal_barbuk.required' => 'Tanggal barbuk wajib diisi',
+            'tanggal_barbuk.date' => 'Format tanggal tidak valid',
+        ]);
+
+        DB::table('aspems')->insert([
+            'register_perkara' => $request->register_perkara,
+            'barang_bukti' => $request->barang_bukti,
+            'tanggal_barbuk' => $request->tanggal_barbuk,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('label.index')->with('success', 'Data berhasil disimpan.');
+    }
+    public function edit(Aspem $id)
+    {
+        return view('label.edit', compact('id'));
+    }
+
 }
