@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class AspemController extends Controller
 {
+    public function login(){
+        return view('login');
+    }
     public function index(){
         $aspem = Aspem::all();
         return view('label.label',compact('aspem'));
