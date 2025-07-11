@@ -1,10 +1,11 @@
 @extends('layout.main')
-@section('title', 'Data Label')
+@section('title', 'Label')
 @section('content')
 
     {{-- SECTION: Header halaman --}}
     <div class="container-fluid px-4">
             <h1 class="h3 mb-3 text-gray-800">Label Barang Bukti</h1>
+        
 
         {{-- SECTION: Card tabel data --}}
         <div class="card mb-4">
@@ -88,6 +89,7 @@
     {{-- END Container --}}
 @endsection
 
+@push('scripts')
     <script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('sadmin2/js/demo/datatables-demo.js') }}"></script>
@@ -98,3 +100,4 @@
     <script src="{{ asset('sadmin2/vendor/chart.js/Chart.min.js') }} "></script>
     <script src="{{ asset('sadmin2/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('sadmin2/js/demo/chart-pie-demo.js') }}"></script>
+@endpush

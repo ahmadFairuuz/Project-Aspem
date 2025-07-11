@@ -43,33 +43,29 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Kejaksaan Tinggi Lampung</h1>
                                     </div>
-                                    <form class="user">
+                                    <hr>
+                                    @if (session('error'))
+                                        <div class="alert alert-danger">
+                                            <b>Opps!</b> {{ session('error') }}
+                                        </div>
+                                    @endif
+                                    <form action="{{ route('login') }}" method="post">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <label>Username</label>
+                                            <input type="name" name="name" class="form-control"
+                                                placeholder="Username" required="">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <label>Password</label>
+                                            <input type="password" name="password" class="form-control"
+                                                placeholder="Password" required="">
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <a href="{{ route('dashboard') }}" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
-
-                                        <div class="text-center">
-                                            <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="register.html">Create an Account!</a>
-                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                                        <hr>
+                                        <p class="text-center">Belum punya akun? <a href="#">Register</a>
+                                            sekarang!</p>
+                                    </form>
                                 </div>
                             </div>
                         </div>

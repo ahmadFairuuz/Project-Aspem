@@ -11,7 +11,9 @@ Route::get('/dashboard', function () {
 //     return view('login');
 // });
 
-Route::get('/', [AspemController::class, 'login'])->name('login');
+Route::get('/', [AspemController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login', [AspemController::class, 'login']) -> name('login');
+Route::post('/logout', [AspemController::class, 'logout'])->name('logout');
 Route::get('/label', [AspemController::class, 'index'])->name('label.index');
 route::get('/label/create', [AspemController::class, 'create'])->name('label.create');
 route::post('/label/store', [AspemController::class, 'store'])->name('label.store');

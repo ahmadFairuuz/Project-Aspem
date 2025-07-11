@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Data Label')
+@section('title', 'Edit Label')
 @section('content')
 
     <div class="container-fluid px-4">
@@ -66,6 +66,7 @@
     </a>
 @endsection
 
+@push('scripts')
 <script src="sadmin2/vendor/jquery/jquery.min.js"></script>
 <script src="sadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="sadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -73,3 +74,4 @@
 <script src="sadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="sadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="sadmin2/js/demo/datatables-demo.js"></script>
+@endpush

@@ -1,13 +1,13 @@
 @extends('layout.main')
-@section('title', 'Data Label')
+@section('title', 'Tambah Label')
 @section('content')
 
     <div class="container-fluid px-4">
-            <h1 class="h3 mb-0 text-gray-800">Label Barang Bukti</h1>
-            <ol class="breadcrumb my-3">
-                <li class="breadcrumb-item"><a href="{{ route('label.index') }}">Label</a></li>
-                <li class="breadcrumb-item active">Tambah</li>
-            </ol>
+        <h1 class="h3 mb-0 text-gray-800">Label Barang Bukti</h1>
+        <ol class="breadcrumb my-3">
+            <li class="breadcrumb-item"><a href="{{ route('label.index') }}">Label</a></li>
+            <li class="breadcrumb-item active">Tambah</li>
+        </ol>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -58,13 +58,15 @@
     </div>
 @endsection
 
-<script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('sadmin2/js/demo/datatables-demo.js') }}"></script>
-<script src="{{ asset('sadmin2/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('sadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('sadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('sadmin2/js/sb-admin-2.min.js') }}"></script>
-<script src="{{ asset('sadmin2/vendor/chart.js/Chart.min.js') }} "></script>
-<script src="{{ asset('sadmin2/js/demo/chart-area-demo.js') }}"></script>
-<script src="{{ asset('sadmin2/js/demo/chart-pie-demo.js') }}"></script>
+@push('scripts')
+    <script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/chart.js/Chart.min.js') }} "></script>
+    <script src="{{ asset('sadmin2/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('sadmin2/js/demo/chart-pie-demo.js') }}"></script>
+@endpush

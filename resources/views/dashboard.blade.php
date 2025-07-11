@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Data Label')
+@section('title', 'Dashboard')
 @section('content')
 
     <div class="container-fluid">
@@ -328,6 +328,7 @@
     </a>
 @endsection
 
+@push('scripts')
     <script src="{{ asset('sadmin2/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('sadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('sadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -335,3 +336,4 @@
     <script src="{{ asset('sadmin2/vendor/chart.js/Chart.min.js') }} "></script>
     <script src="{{ asset('sadmin2/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('sadmin2/js/demo/chart-pie-demo.js') }}"></script>
+@endpush

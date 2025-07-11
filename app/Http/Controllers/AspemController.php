@@ -2,17 +2,44 @@
 
 namespace App\Http\Controllers;
 use App\Models\Aspem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AspemController extends Controller
 {
-    public function login(){
-        return view('login');
+    public function showLoginForm(){
+       if (Auth::check()) {
+            return redirect('dashboard');
+        }else{
+            return view('login');
+        }
     }
+    public function login(Request $request){
+       //VALIDASI INPUT
+        $request->validate([
+        'name' => 'required',
+        'password' => 'required',
+        ]);
+       
+       //CEK KREDENSIAL
+       if(Auth::attempt(['name' => $request->name, 'password' => $request->password])){
+        return redirect() -> intended('/dashboard');
+       }
+       return back () -> withErrors (['name' => 'Username atau password salah']);
+    }
+
+    public function logout(Request $request){
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+}    
     public function index(){
         $aspem = Aspem::all();
-        return view('label.label',compact('aspem'));
+        return view('label.label',compact('aspem')); 
     }
     public function create()
     {
@@ -86,6 +113,7 @@ class AspemController extends Controller
         return redirect()->route('label.index')
                 ->with('success','Data berhasil di hapus' );
     }
+    
 
 
 }
