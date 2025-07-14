@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,40 +12,23 @@
     <link href="{{ asset('sadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 </head>
+
 <body id="page-top">
     <!-- Page Wrapper -->
+
     <div id="wrapper">
-
-        <!-- Sidebar -->
         @include('layout.sidebar')
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
+        <div id="wrapper" class="d-flex flex-column sticky-top">
+            @include('layout.topbar')
             <div id="content">
-
-                <!-- Topbar -->
-                @include('layout.topbar')
-
-                <!-- Page Content -->
                 <div class="container-fluid">
                     @yield('content')
                 </div>
-
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            @include('layout.footer')
-
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
+    @include('layout.footer')
 
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
@@ -58,4 +42,5 @@
     <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('sadmin2/js/demo/datatables-demo.js') }}"></script>
 </body>
+
 </html>

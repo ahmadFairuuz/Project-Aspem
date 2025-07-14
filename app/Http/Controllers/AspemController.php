@@ -27,7 +27,7 @@ class AspemController extends Controller
        if(Auth::attempt(['name' => $request->name, 'password' => $request->password])){
         return redirect() -> intended('/dashboard');
        }
-       return back () -> withErrors (['name' => 'Username atau password salah']);
+       return back()->with('error', 'Username atau password salah!');
     }
 
     public function logout(Request $request){

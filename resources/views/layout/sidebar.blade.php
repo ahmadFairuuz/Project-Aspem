@@ -1,6 +1,6 @@
 <div>
 
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
         <div class="sidebar-brand d-flex flex-column align-items-center justify-content-center my-3">

@@ -23,7 +23,6 @@
 </head>
 
 <body class="bg-gradient-primary">
-
     <div class="container">
 
         <!-- Outer Row -->
@@ -37,34 +36,37 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <img src="image/LOGO KEJAKSAAN.png" alt="kejaksaan" class="img-fluid w-70 ">
+                                         <img src="{{ asset('image/LOGO KEJAKSAAN.png') }}" alt="Logo" class="img-fluid w-70 ">
                                     </div>
 
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Kejaksaan Tinggi Lampung</h1>
                                     </div>
                                     <hr>
-                                    @if (session('error'))
-                                        <div class="alert alert-danger">
-                                            <b>Opps!</b> {{ session('error') }}
-                                        </div>
-                                    @endif
                                     <form action="{{ route('login') }}" method="post">
                                         @csrf
                                         <div class="form-group">
                                             <label>Username</label>
                                             <input type="name" name="name" class="form-control"
-                                                placeholder="Username" required="">
+                                                placeholder="Masukkan Username" required="">
+                                            @error('name')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" name="password" class="form-control"
-                                                placeholder="Password" required="">
+                                                placeholder="Masukkan Password" required="">
+                                            @error('password')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block">Log In</button>
-                                        <hr>
-                                        <p class="text-center">Belum punya akun? <a href="#">Register</a>
-                                            sekarang!</p>
+                                        @if (session('error'))
+                                            <div class="alert alert-danger mt-3 text-center">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
                                     </form>
                                 </div>
                             </div>
@@ -77,16 +79,6 @@
         </div>
 
     </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset(' vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset(' vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset(' vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js') }} "></script>
 
 </body>
 
