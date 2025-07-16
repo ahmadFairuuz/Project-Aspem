@@ -23,6 +23,11 @@
                 <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
                 <span>Label</span></a>
         </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ route('barang-rampasan.index') }}">
+                <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
+                <span>Barang Rampasan</span></a>
+        </li>
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Heading -->

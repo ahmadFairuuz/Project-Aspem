@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AspemController;
+use App\Http\Controllers\BarangRampasanController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -20,3 +21,4 @@ route::post('/label/store', [AspemController::class, 'store'])->name('label.stor
 route::get('/label/edit{id}', [AspemController::class, 'edit'])->name('label.edit');
 route::put('/label/update{id}', [AspemController::class, 'update'])->name('label.update');
 route::delete('/label/delete{id}', [AspemController::class, 'destroy'])->name('label.destroy');
+Route::get('/barang-rampasan', [BarangRampasanController::class, 'index'])->name('barang-rampasan.index');
