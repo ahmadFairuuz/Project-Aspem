@@ -18,16 +18,25 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="{{ route('label.index') }}">
-                <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
-                <span>Label</span></a>
-        </li>
+
+        @php
+            $user = Auth::user()->role;
+        @endphp
+
+        @if ($user === 'superadmin' || $user === 'validator')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('label.index') }}">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Label</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item active">
             <a class="nav-link" href="{{ route('barang-rampasan.index') }}">
                 <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
                 <span>Barang Rampasan</span></a>
         </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Heading -->
@@ -117,7 +126,9 @@
                 @csrf
                 <button type="submit" class="dropdown-item nav-link"
                     style="border: none; background: none; padding: 0; margin: 0;">
-                   <i class="fas fa-sign-out-alt  fa-fw ml-3 my-4 group-hover:text-white transition-colors duration-100 "></i> Logout
+                    <i
+                        class="fas fa-sign-out-alt  fa-fw ml-3 my-4 group-hover:text-white transition-colors duration-100 "></i>
+                    Logout
                 </button>
             </form>
         </li>

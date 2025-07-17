@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Aspem;
 use App\Models\User;
+use App\Models\Aspem;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,7 @@ class AspemController extends Controller
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
+
 
     return redirect('/');
 }    
