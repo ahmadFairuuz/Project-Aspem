@@ -15,19 +15,28 @@
 
 <body id="page-top">
     <!-- Page Wrapper -->
-
     <div id="wrapper">
         @include('layout.sidebar')
-        <div id="wrapper" class="d-flex flex-column sticky-top">
-            @include('layout.topbar')
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
             <div id="content">
+                @include('layout.topbar')
+                
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
                     @yield('content')
                 </div>
+                <!-- /.container-fluid -->
             </div>
+            <!-- End of Main Content -->
+            
+            @include('layout.footer')
         </div>
+        <!-- End of Content Wrapper -->
     </div>
-    @include('layout.footer')
+    <!-- End of Page Wrapper -->
 
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -42,5 +51,4 @@
     <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('sadmin2/js/demo/datatables-demo.js') }}"></script>
 </body>
-
 </html>
