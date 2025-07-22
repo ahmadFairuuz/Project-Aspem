@@ -1,7 +1,5 @@
 <div>
-
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
-
         <!-- Sidebar - Brand -->
         <div class="sidebar-brand d-flex flex-column align-items-center justify-content-center my-3">
             <div class="sidebar-brand-icon">
@@ -13,25 +11,34 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
-
+        <li class="nav-item {{ request()->routeIs('perkara.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('perkara.index') }}">
+                <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
+                <span>Daftar Perkara</span></a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{{ route('barang-rampasan.index') }}">
+                <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
+                <span>Tambah Perkara</span></a>
+        </li>
         @php
             $user = Auth::user()->role;
         @endphp
 
         @if ($user === 'superadmin' || $user === 'validator')
-            <li class="nav-item">
+            <li class="nav-item {{ request()->routeIs('label.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('label.index') }}">
                     <i class="fas fa-fw fa-tags"></i>
-                    <span>Label</span>
+                    <span>Label Generator</span>
                 </a>
             </li>
         @endif
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('barang-rampasan.index') }}">
                 <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
                 <span>Barang Rampasan</span></a>
@@ -143,3 +150,4 @@
     </ul>
 
 </div>
+
