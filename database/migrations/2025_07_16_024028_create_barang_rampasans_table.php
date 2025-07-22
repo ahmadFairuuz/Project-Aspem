@@ -12,17 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-    Schema::create('barang_rampasan', function (Blueprint $table) {
-    $table->id();
-    $table->string('register_perkara');
-    $table->string('barang_bukti');
-    $table->date('tanggal_barbuk');
-    $table->text('keterangan')->nullable();
-    $table->string('satker');
-    $table->timestamps();
-});
+        Schema::create('perkara', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+             $table->string('register_perkara');
+            $table->string('barang_bukti');
+            $table->string('tanggal_barbuk');
+            $table->text('keterangan');
 
-    }
+});
+     }
 
     /**
      * Reverse the migrations.
