@@ -13,4 +13,8 @@ class PerkaraController extends Controller
         $perkara = Perkara::all();
         return view('perkara.index', compact('perkara'));
     }
+    public function create()
+{
+    return view('perkara.create'); 
+}
 }

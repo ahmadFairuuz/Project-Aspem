@@ -9,7 +9,7 @@
         {{-- SECTION: Card tabel data --}}
         <div class="card mb-4">
             <div class="card-header">
-                <a href="{{ route('perkara.index') }}" class="btn btn-sm btn-primary">Tambah Perkara</a>
+               <a href="{{ route('perkara.create') }}" class="btn btn-sm btn-primary">Tambah Perkara</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered" id="datatablesSimple">
