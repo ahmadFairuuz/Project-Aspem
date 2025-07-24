@@ -18,12 +18,12 @@
         </li>
         <li class="nav-item {{ request()->routeIs('perkara.index') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('perkara.index') }}">
-                <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
+                <i class="fas fa-fw fa-regular fa-list-ol" aria-hidden="true"></i>
                 <span>Daftar Perkara</span></a>
         </li>
-         <li class="nav-item">
-            <a class="nav-link" href="{{ route('barang-rampasan.index') }}">
-                <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
+         <li class="nav-item {{ request()->routeIs('perkara.index') ? 'active' : '' }}" >
+            <a class="nav-link" href="{{ route('perkara.index') }}">
+                <i class="fas fa-fw fa-plus" aria-hidden="true"></i>
                 <span>Tambah Perkara</span></a>
         </li>
         @php
@@ -33,14 +33,14 @@
         @if ($user === 'superadmin' || $user === 'validator')
             <li class="nav-item {{ request()->routeIs('label.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('label.index') }}">
-                    <i class="fas fa-fw fa-tags"></i>
+                    <i class="fas fa-fw fa-qrcode"></i>
                     <span>Label Generator</span>
                 </a>
             </li>
         @endif
-        <li class="nav-item">
+        <li class="nav-item {{ request()->routeIs('barang-rampasan.index') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('barang-rampasan.index') }}">
-                <i class="fas fa-fw fa-tags" aria-hidden="true"></i>
+                <i class="fas fa-fw fa-box" aria-hidden="true"></i>
                 <span>Barang Rampasan</span></a>
         </li>
 
@@ -145,7 +145,7 @@
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <button class="rounded-circle border-0" id="sidebarToggle">x</button>
         </div>
     </ul>
 

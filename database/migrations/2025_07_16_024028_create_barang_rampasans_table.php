@@ -15,10 +15,14 @@ return new class extends Migration
         Schema::create('barang_rampasan', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-             $table->string('register_perkara');
-            $table->string('barang_bukti');
-            $table->date('tanggal_barbuk');
-            $table->text('keterangan');
+            $table->string('register_perkara');
+            $table->string('nama_barang');
+            $table->date('tgl_pengambilan');
+             $table->string('keterangan_pengambilan');
+            $table->date('tgl_pengembalian');
+            $table->string('keterangan_pengembalian');
+            $table->enum('status', ['PENGEMBALIAN', 'PENGAMBILAN'])->default('PENGEMBALIAN');
+            $table->date('tgl_cetak');
 
 });
      }

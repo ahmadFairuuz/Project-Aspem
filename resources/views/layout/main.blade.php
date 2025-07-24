@@ -50,5 +50,7 @@
     <script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('sadmin2/js/demo/datatables-demo.js') }}"></script>
+@stack('scripts')
+
 </body>
 </html>

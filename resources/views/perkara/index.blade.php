@@ -12,8 +12,8 @@
                <a href="{{ route('perkara.create') }}" class="btn btn-sm btn-primary">Tambah Perkara</a>
             </div>
             <div class="card-body">
-                <table class="table table-bordered" id="datatablesSimple">
-                    <thead>
+                <table class="table table-bordered table-striped" id="dataTable">
+                    <thead class="table-primary">
                         <tr>
                             <th>No</th>
                             <th>Register Perkara</th>
@@ -80,11 +80,11 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('sadmin2/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('sadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('sadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('sadmin2/js/sb-admin-2.min.js') }}"></script>
-    <script src="{{ asset('sadmin2/vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('sadmin2/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('sadmin2/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable(); // inisialisasi datatable
+        });
+    </script>
 @endpush

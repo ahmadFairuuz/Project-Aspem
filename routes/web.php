@@ -27,6 +27,8 @@ route::delete('/label/delete{id}', [AspemController::class, 'destroy'])->name('l
 
 
 Route::get('/barang-rampasan', [BarangRampasanController::class, 'index'])->name('barang-rampasan.index');
+Route::get('/barang-rampasan/aktivitas', [BarangRampasanController::class, 'aktivitas'])->name('barang-rampasan.aktivitas');
+route::delete('/barang-rampasan/delete{id}', [BarangRampasanController::class, 'destroy'])->name('barang-rampasan.destroy');
 
 
 Route::get('/perkara', [PerkaraController::class, 'index'])->name('perkara.index');

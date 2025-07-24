@@ -15,6 +15,11 @@ class BarangRampasanController extends Controller
         return view('barang_rampasan.index', compact('barangRampasan'));
     }
 
+    public function aktivitas(){
+        $barangRampasan = BarangRampasan::all();
+       return view('barang_rampasan.aktivitas', compact('barangRampasan'));
+    }
+
     public function create()
     {
         return view('barang_rampasan.create');

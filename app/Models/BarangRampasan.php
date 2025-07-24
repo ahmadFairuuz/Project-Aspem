@@ -9,13 +9,16 @@ class BarangRampasan extends Model
 {
     use HasFactory;
 
-    protected $table = 'barang_rampasan'; // pastikan sesuai nama tabel di database
+    protected $table = 'barang_rampasan';
 
     protected $fillable = [
         'register_perkara',
-        'barang_bukti',
-        'tanggal_barbuk',
-        'keterangan',
-        'satker',
+        'nama_barang',
+        'tgl_pengambilan',
+        'keterangan_pengambilan',
+        'tgl_pengembalian',
+        'keterangan_pengembalian',
+        'status',
+        'tgl_cetak',
     ];
 }
