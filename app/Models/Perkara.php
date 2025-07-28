@@ -9,16 +9,16 @@ class Perkara extends Model
 {
     use HasFactory;
   protected $table = 'perkara'; // <- TAMBAHKAN INI
-    protected $fillable = [
-       'register_perkara',
-        'satuan_kerja',
-        'nama_barang',
-        'nama_terpidana',
-        'barang_bukti',
-        'tanggal_pengembalian',
-        'keterangan_pengembalian',
-        'status_perkara',
-        'jenis_perkara',
-        'no_putusan_inkraft'
-    ];
+   protected $fillable = [
+    'register_perkara',
+    'tanggal_input',
+    'satuan_kerja',
+    'nama_barang',
+    'nama_terpidana',
+    'barang_bukti',
+    'keterangan_barang_bukti',
+    'status_perkara',
+    'jenis_perkara',
+    'no_putusan_inkraft',
+];
 }

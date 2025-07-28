@@ -15,12 +15,12 @@ return new class extends Migration
             Schema::create('perkara', function (Blueprint $table) {
             $table->id();
             $table->string('register_perkara');
+            $table->date('tanggal_input');
             $table->string('satuan_kerja');
             $table->string('nama_barang');
             $table->string('nama_terpidana');
             $table->string('barang_bukti');
-            $table->date('tanggal_pengembalian')->nullable();
-            $table->text('keterangan_pengembalian')->nullable();
+            $table->string('keterangan_barang_bukti');
             $table->string('status_perkara');
             $table->string('jenis_perkara');
             $table->string('no_putusan_inkraft');
