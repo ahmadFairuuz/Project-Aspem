@@ -18,6 +18,7 @@ class userSeeder extends Seeder
             [
             'name' => 'admin aspem',
             'email' => 'superadmin@example.com',
+            'satuan_kerja' => 'Kejaksaan Tinggi Lampung',
             'password' => Hash::make('admin123'),
             'created_at'       => now(),
             'updated_at'       => now(),
@@ -26,6 +27,7 @@ class userSeeder extends Seeder
         [
             'name' => 'kajati',
             'email' => 'kajati@example.com',
+            'satuan_kerja' => 'Kejaksaan Tinggi Lampung',
             'password' => Hash::make('kajatiLampung'),
             'created_at'       => now(),
             'updated_at'       => now(),
@@ -34,6 +36,7 @@ class userSeeder extends Seeder
         [
             'name' => 'aspem',
             'email' => 'aspem@example.com',
+            'satuan_kerja' => 'Kejaksaan Tinggi Lampung',
             'password' => Hash::make('aspemLampung'),
             'created_at'       => now(),
             'updated_at'       => now(),
@@ -42,6 +45,7 @@ class userSeeder extends Seeder
         [
             'name' => 'Kejari Pringsewu',
             'email' => 'pringsewu@example.com',
+            'satuan_kerja' => 'Kejaksaan Negeri Pringsewu',
             'password' => Hash::make('pringsewu123'),
             'created_at'       => now(),
             'updated_at'       => now(),
@@ -50,6 +54,7 @@ class userSeeder extends Seeder
         [
             'name' => 'Kejari Metro',
             'email' => 'metro@example.com',
+            'satuan_kerja' => 'Kejaksaan Negeri Metro',
             'password' => Hash::make('metro123'),
             'created_at'       => now(),
             'updated_at'       => now(),
