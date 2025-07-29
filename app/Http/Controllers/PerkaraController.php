@@ -13,8 +13,28 @@ class PerkaraController extends Controller
         $perkara = Perkara::all();
         return view('perkara.index', compact('perkara'));
     }
-    public function create()
+   public function create()
 {
-    return view('perkara.create'); 
+    return view('perkara.create');
+}
+
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'register_perkara' => 'required',
+        'tanggal_input' => 'required|date',
+        'satuan_kerja' => 'required',
+        'nama_barang' => 'required',
+        'nama_terpidana' => 'required',
+        'barang_bukti' => 'required',
+        'keterangan_barang_bukti' => 'required',
+        'status_perkara' => 'required',
+        'jenis_perkara' => 'required',
+        'no_putusan_inkraft' => 'required',
+    ]);
+
+    \App\Models\Perkara::create($validated);
+
+    return redirect()->route('perkara.index')->with('success', 'Data berhasil ditambahkan.');
 }
 }

@@ -13,14 +13,18 @@
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped" id="dataTable">
-                    <thead class="table-primary">
+                    <thead class="table-dark">
                         <tr>
                             <th>No</th>
                             <th>Register Perkara</th>
                             <th>Satuan Kerja</th>
                             <th>Nama Barang</th>
                             <th>Nama Terpidana</th>
+                            <th>Barang Bukti</th>
+                            <th>Keterangan Barang Bukti</th>
+                            <th>Jenis Perkara</th>
                             <th>Status Perkara</th>
+                            <th>No Putusan Inkraft</th>
                             <th width="180px">Aksi</th>
                         </tr>
                     </thead>
@@ -32,7 +36,11 @@
                                 <td>{{ $item->satuan_kerja }}</td>
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->nama_terpidana }}</td>
+                                <td>{{ $item->barang_bukti }}</td>
+                                <td>{{ $item->keterangan_barang_bukti }}</td>
+                                <td>{{ $item->jenis_perkara }}</td>
                                 <td>{{ $item->status_perkara }}</td>
+                                <td>{{ $item->no_putusan_inkraft }}</td>
                                 <td>
                                     <a href="{{ route('perkara.index', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
