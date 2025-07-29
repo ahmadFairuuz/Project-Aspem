@@ -19,67 +19,68 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('sadmin2/css/sb-admin-2.min.css') }} " rel="stylesheet">
+    <style>
+        .login-card {
+            max-width: 500px;
+            margin: auto;
+            margin-top: 60px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
 
+        .login-logo {
+            width: 500px;
+            margin-bottom: 20px;
+        }
+
+        body {
+            background: linear-gradient(to right, #4e73df, #224abe);
+        }
+    </style>
 </head>
 
-<body class="bg-gradient-primary">
+<body>
     <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                         <img src="{{ asset('image/LOGO KEJAKSAAN.png') }}" alt="Logo" class="img-fluid w-70 ">
-                                    </div>
-
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Kejaksaan Tinggi Lampung</h1>
-                                    </div>
-                                    <hr>
-                                    <form action="{{ route('login') }}" method="post">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="name" name="name" class="form-control"
-                                                placeholder="Masukkan Username" required="">
-                                            @error('name')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" name="password" class="form-control"
-                                                placeholder="Masukkan Password" required="">
-                                            @error('password')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
-                                        @if (session('error'))
-                                            <div class="alert alert-danger mt-3 text-center">
-                                                {{ session('error') }}
-                                            </div>
-                                        @endif
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="card login-card o-hidden border-0">
+            <div class="card-body p-5">
+                <div class="text-center">
+                    <img src="{{ asset('image/LOGO KEJAKSAAN.png') }}" alt="Logo" class="img-fluid login-logo">
+                    <h1 class="h5 text-dark mb-4">Kejaksaan Tinggi Lampung</h1>
                 </div>
 
+                <hr>
+
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
+
+                    <div class="form-group">
+                        <label class="text-dark">Username</label>
+                        <input type="text" name="name" class="form-control" placeholder="Masukkan Username"
+                            required>
+                        @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="text-dark">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Masukkan Password"
+                            required>
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+
+                    @if (session('error'))
+                        <div class="alert alert-danger mt-3 text-center">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                </form>
             </div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>
