@@ -12,6 +12,7 @@
                     Rampasan</a>
             </div>
             <div class="card-body">
+                <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="dataTable">
                     <thead class="table-primary">
                         <tr>
@@ -38,6 +39,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>

@@ -13,6 +13,7 @@
 
     <div class="card mb-4">
         <div class="card-body">
+            <div class="table-responsive">
             <table class="table table-bordered table-striped" id="dataTable">
                 <thead class="table-dark">
                     <tr>
@@ -38,7 +39,7 @@
                         <td>{{ \Carbon\Carbon::parse($item->tgl_pengembalian)->format('d-m-Y') }}</td>
                         <td>{{ $item->keterangan_pengembalian }}</td>
                         <td>
-                            <span class="badge {{ $item->status == 'PENGEMBALIAN' ? 'bg-success' : 'bg-warning text-dark' }}">
+                            <span class="badge {{ $item->status == 'PENGEMBALIAN' ? 'bg-success' : 'bg-warning text-dark' }}  text-white px-3 py-2 fw-bold">
                                 {{ $item->status }}
                             </span>
                         </td>
@@ -47,6 +48,7 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>
