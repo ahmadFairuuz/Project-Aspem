@@ -14,7 +14,7 @@ class BarangRampasanController extends Controller
     {
        $user = Auth::user(); // ambil user yang sedang login
 
-        if ($user->role === 'admin') {
+        if ($user->hasGlobalAccess()) {
             // Admin bisa lihat semua data
             $barangRampasan = BarangRampasan::orderBy('created_at', 'desc')->get();
         } else {

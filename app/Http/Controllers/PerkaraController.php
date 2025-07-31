@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Perkara;
+use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class PerkaraController extends Controller
     {
         $user = Auth::user(); // ambil user yang sedang login
 
-        if ($user->role === 'admin') {
+        if ($user->hasGlobalAccess()) {
             // Admin bisa lihat semua data
             $perkara = Perkara::orderBy('created_at', 'desc')->get();
         } else {

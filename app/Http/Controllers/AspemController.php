@@ -42,7 +42,7 @@ class AspemController extends Controller
     public function index(){
         $user = Auth::user(); // ambil user yang sedang login
 
-        if ($user->role === 'admin') {
+        if ($user->hasGlobalAccess()) {
             // Admin bisa lihat semua data
             $aspem = Aspem::orderBy('created_at', 'desc')->get();
         } else {
