@@ -1,6 +1,5 @@
  @php
-     $name = Auth::user()->name;
-     $user = Auth::user()->role;
+     $role = Auth::user()->role;
  @endphp
 
  <div>
@@ -26,14 +25,14 @@
                  <i class="fas fa-fw fa-regular fa-list-ol" aria-hidden="true"></i>
                  <span>Daftar Perkara</span></a>
          </li>
-         @if ($name !== 'kajati')
+         @if ($role !== 'kajati')
              <li class="nav-item {{ request()->routeIs('perkara.create') ? 'active' : '' }}">
                  <a class="nav-link" href="{{ route('perkara.create') }}">
                      <i class="fas fa-fw fa-plus" aria-hidden="true"></i>
                      <span>Tambah Perkara</span></a>
              </li>
          @endif
-         @if ($name !== 'kajati')
+         @if ($role !== 'kajati' && $role !== 'validator')
              <li class="nav-item {{ request()->routeIs('label.index') ? 'active' : '' }}">
                  <a class="nav-link" href="{{ route('label.index') }}">
                      <i class="fas fa-fw fa-qrcode"></i>
@@ -41,7 +40,7 @@
                  </a>
              </li>
          @endif
-         @if ($name !== 'kajati')
+         @if ($role !== 'kajati')
              <li class="nav-item {{ request()->routeIs('barang-rampasan.index') ? 'active' : '' }}">
                  <a class="nav-link" href="{{ route('barang-rampasan.index') }}">
                      <i class="fas fa-fw fa-box" aria-hidden="true"></i>

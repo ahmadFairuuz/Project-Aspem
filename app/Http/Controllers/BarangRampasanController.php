@@ -21,6 +21,9 @@ class BarangRampasanController extends Controller
             // User biasa hanya lihat data sesuai kabupaten_id mereka
             $barangRampasan = BarangRampasan::where('kabupaten_id', $user->kabupaten_id)->orderBy('created_at', 'desc')->get();
         }
+         if (Auth::user()->role === 'kajati') {
+        abort(403, 'Akses ditolak.');
+    }
         return view('barang_rampasan.index', compact('barangRampasan'));
     }
 

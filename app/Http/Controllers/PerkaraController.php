@@ -26,6 +26,9 @@ class PerkaraController extends Controller
     }
     public function create()
     {
+         if (Auth::user()->name === 'kajati') {
+        abort(403, 'Akses ditolak.');
+    }
         return view('perkara.create');
     }
 

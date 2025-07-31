@@ -48,11 +48,19 @@ class AspemController extends Controller
         } else {
             // User biasa hanya lihat data sesuai kabupaten_id mereka
             $aspem = Aspem::where('kabupaten_id', $user->kabupaten_id)->orderBy('created_at', 'desc')->get();
-        }
+        } 
+        if (in_array($user->role, ['kajati', 'validator'])) {
+        abort(403, 'Akses ditolak.');
+    }
+        
         return view('label.label',compact('aspem')); 
     }
     public function create()
     {
+         $user = Auth::user(); // ambil user yang sedang login
+         if (in_array($user->role, ['kajati', 'validator'])) {
+        abort(403, 'Akses ditolak');
+    }
         return view('label.create');
     }
     public function store(Request $request)
