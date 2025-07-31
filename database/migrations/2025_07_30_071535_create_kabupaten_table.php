@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aspems', function (Blueprint $table) {
+        Schema::create('kabupaten', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->timestamps();
-            $table->string('register_perkara');
-            $table->string('barang_bukti');
-            $table->string('tanggal_barbuk');
-            $table->text('keterangan');
-            $table->unsignedBigInteger('kabupaten_id');
         });
     }
 
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aspems');
+        Schema::dropIfExists('kabupaten');
     }
 };

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('status_perkara');
             $table->string('jenis_perkara');
             $table->string('no_putusan_inkraft');
+            $table->unsignedBigInteger('kabupaten_id');
             $table->timestamps();
         });
     }

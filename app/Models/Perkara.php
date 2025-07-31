@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Perkara extends Model
 {
-    use HasFactory;
+  use HasFactory;
   protected $table = 'perkara'; // <- TAMBAHKAN INI
    protected $fillable = [
     'register_perkara',
@@ -20,5 +20,8 @@ class Perkara extends Model
     'status_perkara',
     'jenis_perkara',
     'no_putusan_inkraft',
+    'kabupaten_id',
+
 ];
+
 }

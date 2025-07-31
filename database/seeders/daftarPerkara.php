@@ -5,11 +5,14 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\User;
 
 class daftarPerkara extends Seeder
 {
     public function run(): void
     {
+         $user = User::where('email', 'metro@example.com')->first();
+
         DB::table('perkara')->insert([
             [
                 'register_perkara' => 'PDM-44/MTR/Eoh.2/07/2025',
@@ -24,6 +27,7 @@ class daftarPerkara extends Seeder
                 'no_putusan_inkraft' => 'Belum Ada Putusan',
                 'created_at' => now(),
                 'updated_at' => now(),
+                 'kabupaten_id'     => $user->kabupaten_id,
             ],
             [
                 'register_perkara' => 'PDM-49/MTR/Enz.2/07/2025',
@@ -38,6 +42,7 @@ class daftarPerkara extends Seeder
                 'no_putusan_inkraft' => 'Belum Ada Putusan',
                 'created_at' => now(),
                 'updated_at' => now(),
+                 'kabupaten_id'     => $user->kabupaten_id,
             ],
             [
                 'register_perkara' => 'PDM-48/MTR/Enz.2/07/2025',
@@ -52,6 +57,7 @@ class daftarPerkara extends Seeder
                 'no_putusan_inkraft' => 'Belum Ada Putusan',
                 'created_at' => now(),
                 'updated_at' => now(),
+                 'kabupaten_id'     => $user->kabupaten_id,
             ],
             [
                 'register_perkara' => 'PDM-47/MTR/Enz.2/07/2025',
@@ -66,6 +72,7 @@ class daftarPerkara extends Seeder
                 'no_putusan_inkraft' => 'Belum Ada Putusan',
                 'created_at' => now(),
                 'updated_at' => now(),
+                 'kabupaten_id'     => $user->kabupaten_id,
             ],
             [
                 'register_perkara' => 'PDM-46/MTR/Enz.2/07/2025',
@@ -80,6 +87,7 @@ class daftarPerkara extends Seeder
                 'no_putusan_inkraft' => 'Belum Ada Putusan',
                 'created_at' => now(),
                 'updated_at' => now(),
+                 'kabupaten_id'     => $user->kabupaten_id,
             ],
         ]);
     }

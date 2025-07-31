@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\BarangRampasan;
 
@@ -9,6 +9,7 @@ class BarangRampasanSeeder extends Seeder
 {
     public function run(): void
     {
+        $user = User::where('email', 'metro@example.com')->first();
         $data = [
             [
                 'register_perkara' => 'PDM-35/MTR/Eoh.2/05/2025',
@@ -19,6 +20,8 @@ class BarangRampasanSeeder extends Seeder
                 'keterangan_pengembalian' => 'TELAH KEMBALI',
                 'status' => 'PENGEMBALIAN',
                 'tgl_cetak' => now()->toDateString(),
+                 'kabupaten_id'     => $user->kabupaten_id,
+                
             ],
             [
                 'register_perkara' => 'PDM-35/MTR/Eoh.2/05/2025',
@@ -29,6 +32,7 @@ class BarangRampasanSeeder extends Seeder
                 'keterangan_pengembalian' => 'TELAH KEMBALI',
                 'status' => 'PENGEMBALIAN',
                 'tgl_cetak' => now()->toDateString(),
+                 'kabupaten_id'     => $user->kabupaten_id,
             ],
             [
                 'register_perkara' => 'PDM-30/MTR/Eoh.2/04/2025',
@@ -39,6 +43,7 @@ class BarangRampasanSeeder extends Seeder
                 'keterangan_pengembalian' => 'TELAH KEMBALI',
                 'status' => 'PENGEMBALIAN',
                 'tgl_cetak' => now()->toDateString(),
+                 'kabupaten_id'     => $user->kabupaten_id,
             ],
         ];
 

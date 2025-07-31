@@ -15,6 +15,8 @@ class AspemSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = User::where('email', 'metro@example.com')->first();
+
         DB::table('aspems')->insert([
             [
                 'register_perkara' => 'RP001',
@@ -23,6 +25,7 @@ class AspemSeeder extends Seeder
                 'keterangan'       => 'Disita dari TKP A',
                 'created_at'       => now(),
                 'updated_at'       => now(),
+                'kabupaten_id'     => $user->kabupaten_id,
             ],
             [
                 'register_perkara' => 'RP002',
@@ -31,6 +34,7 @@ class AspemSeeder extends Seeder
                 'keterangan'       => 'Barang bukti kejahatan cyber',
                 'created_at'       => now(),
                 'updated_at'       => now(),
+                'kabupaten_id'     => $user->kabupaten_id,
             ],
             [
                 'register_perkara' => 'RP003',
@@ -39,7 +43,27 @@ class AspemSeeder extends Seeder
                 'keterangan'       => 'Disita dari hasil penggeledahan',
                 'created_at'       => now(),
                 'updated_at'       => now(),
+                'kabupaten_id'     => $user->kabupaten_id,
             ],
         ]);
+        DB::table('kabupaten')->insert([
+    ['nama' => 'Metro'],
+    ['nama' => 'Bandar Lampung'],
+    ['nama' => 'Pringsewu'],
+    ['nama' => 'Tulang Bawang'],
+    ['nama' => 'Tulang Bawang Barat'],
+    ['nama' => 'Lampung Utara'],
+    ['nama' => 'Lampung Barat'],
+    ['nama' => 'Lampung Timur'],
+    ['nama' => 'Lampung Tengah'],
+    ['nama' => 'Lampung Selatan'],
+    ['nama' => 'Mesuji'],
+    ['nama' => 'Pesisir Barat'],
+    ['nama' => 'Way Kanan'],
+    ['nama' => 'Tanggamus'],
+    ['nama' => 'Pesawaran'],
+    ['nama' => 'Lampung'],
+        ]);
+
     }
 }

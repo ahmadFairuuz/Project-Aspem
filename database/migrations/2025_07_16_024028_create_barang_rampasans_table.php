@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('keterangan_pengembalian');
             $table->enum('status', ['PENGEMBALIAN', 'PENGAMBILAN'])->default('PENGEMBALIAN');
             $table->date('tgl_cetak');
+            $table->unsignedBigInteger('kabupaten_id');
 
 });
      }

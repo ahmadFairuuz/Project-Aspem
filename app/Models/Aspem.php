@@ -14,4 +14,6 @@ class Aspem extends Model
         'tanggal_barbuk',
         'keterangan'
     ];
+    
 }
+

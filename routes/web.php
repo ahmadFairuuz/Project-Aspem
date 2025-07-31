@@ -34,4 +34,3 @@ route::delete('/barang-rampasan/delete{id}', [BarangRampasanController::class, '
 Route::get('/perkara', [PerkaraController::class, 'index'])->name('perkara.index');
 Route::get('/perkara/create', [PerkaraController::class, 'create'])->name('perkara.create');
 Route::post('/perkara/store', [PerkaraController::class, 'store'])->name('perkara.store');
-

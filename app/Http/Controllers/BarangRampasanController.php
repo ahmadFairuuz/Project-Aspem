@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BarangRampasan;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Models\BarangRampasan;
+use Illuminate\Support\Facades\Auth;
 
 class BarangRampasanController extends Controller
 {
     public function index()
     {
-        $barangRampasan = BarangRampasan::all();
+       $user = Auth::user(); // ambil user yang sedang login
+
+        if ($user->role === 'admin') {
+            // Admin bisa lihat semua data
+            $barangRampasan = BarangRampasan::orderBy('created_at', 'desc')->get();
+        } else {
+            // User biasa hanya lihat data sesuai kabupaten_id mereka
+            $barangRampasan = BarangRampasan::where('kabupaten_id', $user->kabupaten_id)->orderBy('created_at', 'desc')->get();
+        }
         return view('barang_rampasan.index', compact('barangRampasan'));
     }
 
@@ -35,6 +44,8 @@ class BarangRampasanController extends Controller
             'tanggal_cetak.required' => 'Tanggal cetak wajib diisi',
             'tanggal_cetak.date' => 'Format tanggal tidak valid',
         ]);
+        $validated['kabupaten_id'] = Auth::user()->kabupaten_id;
+
 
         DB::table('barang_rampasan')->insert([
             'satker' => $request->satker,
