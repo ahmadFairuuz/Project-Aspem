@@ -37,7 +37,7 @@ class AspemController extends Controller
     $request->session()->regenerateToken();
 
 
-    return redirect('/');
+    return redirect('login');
 }    
     public function index(){
         $user = Auth::user(); // ambil user yang sedang login

@@ -48,7 +48,7 @@ class PerkaraController extends Controller
         ]);
         $validated['kabupaten_id'] = Auth::user()->kabupaten_id;
 
-        \App\Models\Perkara::create($validated);
+        Perkara::create($validated);
 
         return redirect()->route('perkara.index')->with('success', 'Data berhasil ditambahkan.');
     }
