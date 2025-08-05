@@ -84,6 +84,13 @@
                  </button>
              </form>
          </li>
+         @if ($role !== 'super admin')
+         <li class="nav-item {{ request()->routeIs('akun.index') ? 'active' : '' }}">
+             <a class="nav-link" href="{{ route('akun.index') }}">
+                 <i class="fas fa-fw fa-user" aria-hidden="true"></i>
+                 <span>Kelola Akun</span></a>
+         </li>    
+         @endif
 
          <!-- Divider -->
          <hr class="sidebar-divider d-none d-md-block">
@@ -95,4 +102,3 @@
      </ul>
 
  </div>
-

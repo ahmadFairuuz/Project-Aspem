@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AkunController;
 use App\Http\Controllers\AspemController;
-use App\Http\Controllers\BarangRampasanController;
 use App\Http\Controllers\PerkaraController;
 use App\Http\Middleware\PreventBackHistory;
-use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\BarangRampasanController;
 
 Route::get('/', [AspemController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AspemController::class, 'login'])->name('login');
@@ -32,4 +33,8 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/perkara', [PerkaraController::class, 'index'])->name('perkara.index');
     Route::get('/perkara/create', [PerkaraController::class, 'create'])->name('perkara.create');
     Route::post('/perkara/store', [PerkaraController::class, 'store'])->name('perkara.store');
+
+    Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
+    Route::get('/akun/edit{id}', [AkunController::class, 'edit'])->name('akun.edit');
+    Route::put('/akun/update{id}', [AkunController::class, 'update'])->name('akun.update');
 });
