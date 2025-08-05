@@ -17,9 +17,11 @@ class PreventBackHistory
 {
     $response = $next($request);
 
-    $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
-    $response->header('Pragma', 'no-cache');
-    $response->header('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
+    if ($response instanceof \Illuminate\Http\Response || $response instanceof \Illuminate\Http\JsonResponse) {
+        $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
+        $response->header('Pragma', 'no-cache');
+        $response->header('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
+    }
 
     return $response;
 }

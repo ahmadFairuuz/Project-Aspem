@@ -5,6 +5,14 @@
 @section('content')
     <div class="container-fluid px-4">
         <h1 class="h3 mb-3 text-gray-800">Index Data Barang Rampasan</h1>
+        <form action="{{ route('barang-rampasan.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" required>
+            <button class="btn btn-info" type="submit">Import</button>
+        </form>
+
+        <h1 class="h3 mb-3 text-gray-800">Export Users</h1>
+        <a href="{{ route('barang-rampasan.export') }}" class="btn btn-success">Download Excel</a>
 
         <div class="card mb-4">
             <div class="card-header">

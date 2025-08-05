@@ -7,6 +7,9 @@ use App\Models\BarangRampasan;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BarangRampasanExport;
+use App\Exports\BarangRampasanImport;
 
 class BarangRampasanController extends Controller
 {
@@ -82,5 +85,18 @@ class BarangRampasanController extends Controller
     {
         $barangRampasan->delete();
         return redirect()->route('barang-rampasan.index')->with('success', 'Data berhasil dihapus.');
+    }
+            public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|max:2048',
+        ]);
+        Excel::import(new BarangRampasanImport, $request->file('file'));
+        return redirect()->back()->with('success', 'Users Imported Successfully');
+    }
+
+    public function export()
+    {
+        return Excel::download(new BarangRampasanExport, 'barang-rampasan.xlsx');
     }
 }

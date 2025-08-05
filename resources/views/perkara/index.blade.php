@@ -5,6 +5,14 @@
     {{-- SECTION: Header halaman --}}
     <div class="container-fluid px-4">
         <h1 class="h3 mb-3 text-gray-800">Data Perkara</h1>
+        <form action="{{ route('perkara.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" required>
+            <button class="btn btn-info" type="submit">Import</button>
+        </form>
+
+        <h1 class="h3 mb-3 text-gray-800">Export Users</h1>
+        <a href="{{ route('perkara.export') }}" class="btn btn-success">Download Excel</a>
 
         {{-- SECTION: Card tabel data --}}
         <div class="card mb-4">
@@ -43,44 +51,17 @@
                                     <td>{{ $item->status_perkara }}</td>
                                     <td>{{ $item->no_putusan_inkraft }}</td>
                                     <td>
-                                        <a href="{{ route('perkara.index', $item->id) }}"
+                                        <a href="{{ route('perkara.edit', $item->id) }}"
                                             class="btn btn-sm btn-warning">Edit</a>
 
                                         <!-- Tombol Modal Hapus -->
-                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#modalHapus{{ $item->id }}">
-                                            Hapus
-                                        </button>
-
-                                        <!-- Modal Hapus -->
-                                        <div class="modal fade" id="modalHapus{{ $item->id }}" tabindex="-1"
-                                            aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalLabel{{ $item->id }}">Hapus
-                                                            Perkara</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Apakah Anda yakin ingin menghapus
-                                                        <strong>{{ $item->register_perkara }}</strong>?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                        <form action="{{ route('perkara.index', $item->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- END Modal --}}
+                                        <form action="{{ route('perkara.destroy', $item->id) }}" method="POST"
+                                            style="display: inline;"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -95,10 +76,11 @@
 @push('scripts')
     <script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable(); // inisialisasi datatable
         });
     </script>
 @endpush
-
