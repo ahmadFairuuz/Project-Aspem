@@ -11,6 +11,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('sadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+<script>
+    // Ini akan memanipulasi riwayat browser sehingga tidak bisa kembali
+    if (window.history && window.history.pushState) {
+        window.history.pushState('forward', '', window.location.href);
+        window.onpopstate = function() {
+            window.location.href = "{{ route('login.form') }}";
+        };
+    }
+</script>
 </head>
 
 <body id="page-top">

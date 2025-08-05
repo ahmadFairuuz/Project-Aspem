@@ -36,6 +36,15 @@
             background: linear-gradient(to right, #4e73df, #224abe);
         }
     </style>
+    <script>
+    // Ini akan memanipulasi riwayat browser sehingga tidak bisa kembali
+    if (window.history && window.history.pushState) {
+        window.history.pushState('forward', '', window.location.href);
+        window.onpopstate = function() {
+            window.location.href = "{{ route('login.form') }}";
+        };
+    }
+</script>
 </head>
 
 <body>
