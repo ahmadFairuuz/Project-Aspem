@@ -16,6 +16,7 @@
                     {{-- SECTION: Header tabel --}}
                     <thead class="table-primary">
                         <tr>
+                             
                             <th>No</th>
                             <th>Register Perkara</th>
                             <th>Barang Bukti</th>
@@ -29,6 +30,7 @@
                     <tbody>
                         @foreach ($aspem as $item)
                             <tr>
+                                
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->register_perkara }}</td>
                                 <td>{{ $item->barang_bukti }}</td>
@@ -46,8 +48,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                     </form>
-
-                                </td>
+                                    <a href="{{ route('label.generate', $item->id) }}" class="btn btn-sm btn-success mt-1">Generate</a>
                             </tr>
                         @endforeach
                     </tbody>
@@ -60,12 +61,18 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script>
+    $('#checkAll').click(function () {
+        $('.checkItem').prop('checked', this.checked);
+    });
+</script>   
+<script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable(); // inisialisasi datatable
         });
     </script>
+    
 @endpush
 
