@@ -5,19 +5,19 @@
 @section('content')
     <div class="container-fluid px-4">
         <h1 class="h3 mb-3 text-gray-800">Index Data Barang Rampasan</h1>
-        <form action="{{ route('barang-rampasan.import') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="file" required>
-            <button class="btn btn-info" type="submit">Import</button>
-        </form>
-
-        <h1 class="h3 mb-3 text-gray-800">Export Users</h1>
-        <a href="{{ route('barang-rampasan.export') }}" class="btn btn-success">Download Excel</a>
-
         <div class="card mb-4">
-            <div class="card-header">
-                <a href="{{ route('barang-rampasan.aktivitas') }}" class="btn btn-sm btn-primary">Aktivitas Barang
-                    Rampasan</a>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{{ route('barang-rampasan.aktivitas') }}" class="btn  btn-primary">Aktivitas</a>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importModal">
+                        <i class="fas fa-file-import mr-1"></i>Import
+
+                    </button>
+                    <a href="{{ route('barang-rampasan.export') }}" class="btn btn-success"><i
+                            class="fas fa-file-export mr-1"></i>Eksport</a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -48,6 +48,31 @@
                     </tbody>
                 </table>
                 </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Modal Import -->
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('barang-rampasan.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="importModalLabel">Import Barang Rampasan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Pilih File Excel</label>
+                            <input class="form-control" type="file" name="file" id="file" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -40,10 +40,12 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::post('/perkara/store', [PerkaraController::class, 'store'])->name('perkara.store');
     Route::get('/perkara/export', [PerkaraController::class, 'export'])->name('perkara.export');
     Route::post('/perkara/import', [PerkaraController::class, 'import'])->name('perkara.import');
-
     route::get('/perkara/edit{id}', [PerkaraController::class, 'edit'])->name('perkara.edit');
     route::put('/perkara/update{id}', [PerkaraController::class, 'update'])->name('perkara.update');
     Route::delete('/perkara/delete{id}', [PerkaraController::class, 'destroy'])->name('perkara.destroy');
+    Route::get('/perkara/validasi', [PerkaraController::class, 'validasi'])->name('perkara.validasi');
+    Route::patch('/perkara/{id}/status', [PerkaraController::class, 'updateStatus'])->name('perkara.updateStatus');
+
 
     Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
     Route::get('/akun/edit{id}', [AkunController::class, 'edit'])->name('akun.edit');

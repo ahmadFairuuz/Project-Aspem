@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nama_terpidana');
             $table->string('barang_bukti');
             $table->string('keterangan_barang_bukti');
-            $table->string('status_perkara');
+            $table->enum('status_perkara', ['DISETUJUI', 'PENDING', 'DITOLAK'])->default('PENDING');
             $table->string('jenis_perkara');
             $table->string('no_putusan_inkraft');
             $table->unsignedBigInteger('kabupaten_id');
@@ -34,6 +34,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perkara');
+       Schema::table('perkara', function (Blueprint $table) {
+        $table->string('status_perkara')->change();
+    });
     }
 };

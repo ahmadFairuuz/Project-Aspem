@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Perkara;
 use Illuminate\Http\Request;
 use App\Exports\PerkaraExport;
+use App\Exports\PerkaraImport;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -54,14 +55,37 @@ class PerkaraController extends Controller
 
         return redirect()->route('perkara.index')->with('success', 'Data berhasil ditambahkan.');
     }
+   public function validasi()
+{
+    $perkara = Perkara::get(); // atau sesuaikan
+    return view('perkara.validasi', compact('perkara'));
+}
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status_perkara' => 'required|in:DISETUJUI,PENDING,DITOLAK',
+        ]);
+
+        $perkara = Perkara::findOrFail($id);
+        $perkara->status_perkara = $request->status_perkara;
+        $perkara->save();
+
+        return redirect()->back()->with('success', 'Status perkara berhasil diperbarui.');
+    }
+
     public function edit(Perkara $id)
     {
+        if (Auth::user()->name === 'kajati,validator') {
+            abort(403, 'Akses ditolak.');
+        }
         return view('perkara.edit', compact('id'));
     }
 
     public function update(Request $request, string $id)
     {
-        // Validasi input
+        if (Auth::user()->name === 'kajati,validator') {
+            abort(403, 'Akses ditolak.');
+        }
         $request->validate(
             [
                 'register_perkara' => 'required|max:100',
@@ -104,21 +128,24 @@ class PerkaraController extends Controller
 
     public function destroy(Perkara $id)
     {
+        if (Auth::user()->name === 'kajati,validator') {
+            abort(403, 'Akses ditolak.');
+        }
         $id->delete();
 
         return redirect()->route('perkara.index')->with('success', 'Data berhasil di hapus');
     }
-        public function import(Request $request)
+    public function import(Request $request)
     {
         $request->validate([
             'file' => 'required|max:2048',
         ]);
-        Excel::import(new PerkaraImport, $request->file('file'));
+        Excel::import(new PerkaraImport(), $request->file('file'));
         return redirect()->back()->with('success', 'Users Imported Successfully');
     }
 
     public function export()
     {
-        return Excel::download(new PerkaraExport, 'daftar-perkara.xlsx');
+        return Excel::download(new PerkaraExport(), 'daftar-perkara.xlsx');
     }
 }
