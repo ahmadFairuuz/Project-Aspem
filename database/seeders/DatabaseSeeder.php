@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             AspemSeeder::class,
             daftarPerkara::class,
             BarangRampasanSeeder::class,
+            TunggakanSeeder::class,
             // Tambahkan seeder lain di sini
         ]);
     }

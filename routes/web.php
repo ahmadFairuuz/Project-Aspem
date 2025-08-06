@@ -8,6 +8,7 @@ use App\Http\Controllers\PerkaraController;
 use App\Http\Controllers\LabelController;
 use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\BarangRampasanController;
+use App\Http\Controllers\TunggakanController;
 
 Route::get('/', [AspemController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AspemController::class, 'login'])->name('login');
@@ -53,4 +54,16 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
 
     Route::get('/export', [AkunController::class, 'export']);
     Route::post('/import', [AkunController::class, 'import']);
+
+
+    Route::get('/tunggakan', [TunggakanController::class, 'index'])->name('tunggakan.index');
+    Route::get('/tunggakan/create', [TunggakanController::class, 'create'])->name('tunggakan.create');
+    Route::post('/tunggakan/store', [TunggakanController::class, 'store'])->name('tunggakan.store');
+    Route::get('/tunggakan/{id}/edit', [TunggakanController::class, 'edit'])->name('tunggakan.edit');
+Route::put('/tunggakan/{id}', [TunggakanController::class, 'update'])->name('tunggakan.update');
+Route::delete('/tunggakan/{id}', [TunggakanController::class, 'destroy'])->name('tunggakan.destroy');
+Route::get('/tunggakan/export', [TunggakanController::class, 'export'])->name('tunggakan.export');
+Route::post('/tunggakan/import', [TunggakanController::class, 'import'])->name('tunggakan.import');
+
+    
 });
