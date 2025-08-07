@@ -5,7 +5,7 @@ use App\Models\User;
 use App\Models\Perkara;
 use Illuminate\Http\Request;
 use App\Exports\PerkaraExport;
-use App\Exports\PerkaraImport;
+use App\Imports\PerkaraImport;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;

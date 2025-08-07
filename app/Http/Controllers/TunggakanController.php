@@ -8,8 +8,7 @@ use App\Imports\TunggakanImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-
-class TunggakanController 
+class TunggakanController
 {
     public function index()
     {
@@ -37,36 +36,36 @@ class TunggakanController
         return redirect()->route('tunggakan.index')->with('success', 'Data berhasil ditambahkan');
     }
     public function edit($id)
-{
-    $tunggakan = Tunggakan::findOrFail($id);
-    return view('tunggakan.edit', compact('tunggakan'));
-}
+    {
+        $tunggakan = Tunggakan::findOrFail($id);
+        return view('tunggakan.edit', compact('tunggakan'));
+    }
 
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'no_putusan' => 'required',
-        'nama_terpidana' => 'required',
-        'no_register' => 'required',
-        'nama_barang' => 'required',
-        'jumlah' => 'required|integer',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'no_putusan' => 'required',
+            'nama_terpidana' => 'required',
+            'no_register' => 'required',
+            'nama_barang' => 'required',
+            'jumlah' => 'required|integer',
+        ]);
 
-    $tunggakan = Tunggakan::findOrFail($id);
-    $tunggakan->update($request->all());
+        $tunggakan = Tunggakan::findOrFail($id);
+        $tunggakan->update($request->all());
 
-    return redirect()->route('tunggakan.index')->with('success', 'Data berhasil diperbarui');
-}
+        return redirect()->route('tunggakan.index')->with('success', 'Data berhasil diperbarui');
+    }
 
-public function destroy($id)
-{
-    $tunggakan = Tunggakan::findOrFail($id);
-    $tunggakan->delete();
+    public function destroy($id)
+    {
+        $tunggakan = Tunggakan::findOrFail($id);
+        $tunggakan->delete();
 
-    return redirect()->route('tunggakan.index')->with('success', 'Data berhasil dihapus');
-}
+        return redirect()->route('tunggakan.index')->with('success', 'Data berhasil dihapus');
+    }
 
-public function import(Request $request)
+    public function import(Request $request)
     {
         $request->validate([
             'file' => 'required|max:2048',

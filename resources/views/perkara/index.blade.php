@@ -12,8 +12,8 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
                     <a href="{{ route('perkara.create') }}" class="btn  btn-primary">Tambah Perkara</a>
-                    @if (Auth::user()-> role != 'user')
-                    <a href="{{ route('perkara.validasi') }}" class="btn btn-primary">Validasi</a>
+                    @if (Auth::user()->role != 'user')
+                        <a href="{{ route('perkara.validasi') }}" class="btn btn-primary">Validasi</a>
                     @endif
                 </div>
                 <div>
@@ -34,6 +34,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Register Perkara</th>
+                                <th>Tanggal Input</th>
                                 <th>Satuan Kerja</th>
                                 <th>Jaksa</th>
                                 <th>Pasal Dakwaan</th>
@@ -56,6 +57,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->register_perkara }}</td>
+                                    <td>{{ $item->tanggal_input }}</td>
                                     <td>{{ $item->satuan_kerja }}</td>
                                     <td>{{ $item->jaksa }}</td>
                                     <td>{{ $item->pasal_dakwaan }}</td>
@@ -129,6 +131,22 @@
             </div>
         </div>
     </div>
+
+    {{-- ERROR MESSAGE --}}
+    @if (session()->has('failures'))
+        <div class="alert alert-danger">
+            <h5>Beberapa baris gagal diimport:</h5>
+            <ul>
+                @foreach (session()->get('failures') as $failure)
+                    <li>Baris {{ $failure->row() }}:
+                        @foreach ($failure->errors() as $error)
+                            {{ $error }}
+                        @endforeach
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
 
 @push('scripts')
