@@ -29,37 +29,60 @@ class PerkaraController extends Controller
     }
     public function create()
     {
-        if (Auth::user()->name === 'kajati') {
+        $user = Auth::user();
+        if ($user->hasGlobalAccess()) {
+            $satkerUsers = User::select('id', 'satuan_kerja')->distinct()->get();
+        } else {
+            $satkerUsers = collect([$user]);
+        }
+
+        if ($user->name === 'kajati') {
             abort(403, 'Akses ditolak.');
         }
-        return view('perkara.create');
+        return view('perkara.create', compact('satkerUsers', 'user'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'register_perkara' => 'required',
-            'tanggal_input' => 'required|date',
-            'satuan_kerja' => 'required',
-            'nama_barang' => 'required',
-            'nama_terpidana' => 'required',
-            'barang_bukti' => 'required',
-            'keterangan_barang_bukti' => 'required',
-            'status_perkara' => 'required',
-            'jenis_perkara' => 'required',
-            'no_putusan_inkraft' => 'required',
-        ]);
-        $validated['kabupaten_id'] = Auth::user()->kabupaten_id;
+        $validated = $request->validate(
+            [
+                'register_perkara' => 'required|max:100',
+                'tanggal_input' => 'required|date',
+                'satuan_kerja' => 'required|max:100',
+                'jaksa' => 'required|max:100',
+                'pasal_dakwaan' => 'required|string',
+                'pasal_terbukti' => 'required|string',
+                'status' => 'required|string',
+                'nama_barang' => 'required|string',
+                'nama_terpidana' => 'required|string',
+                'barang_bukti' => 'required|string|max:255',
+                'keterangan_barang_bukti' => 'required|string',
+                'status_perkara' => 'nullable|string',
+                'jenis_perkara' => 'required|string',
+                'no_putusan_inkraft' => 'required|string',
+            ],
+            [
+                'register_perkara.required' => 'Register perkara wajib diisi.',
+                'tanggal_input.required' => 'Tanggal input wajib diisi.',
+                'tanggal_input.date' => 'Format tanggal tidak valid.',
+                'barang_bukti.required' => 'Barang bukti wajib diisi.',
+                'barang_bukti.max' => 'Barang bukti maksimal 255 karakter.',
+                'nama_terpidana.required' => 'Nama terpidana wajib diisi.',
+                // tambahkan pesan lain sesuai kebutuhan
+            ],
+        );
 
+        // Simpan data ke tabel perkara
         Perkara::create($validated);
 
-        return redirect()->route('perkara.index')->with('success', 'Data berhasil ditambahkan.');
+        return redirect()->route('perkara.index')->with('success', 'Data perkara berhasil ditambahkan.');
     }
-   public function validasi()
-{
-    $perkara = Perkara::get(); // atau sesuaikan
-    return view('perkara.validasi', compact('perkara'));
-}
+
+    public function validasi()
+    {
+        $perkara = Perkara::get(); // atau sesuaikan
+        return view('perkara.validasi', compact('perkara'));
+    }
     public function updateStatus(Request $request, $id)
     {
         $request->validate([

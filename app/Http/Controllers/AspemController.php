@@ -10,36 +10,39 @@ use Illuminate\Support\Facades\Auth;
 
 class AspemController extends Controller
 {
-    public function showLoginForm(){
-       if (Auth::check()) {
+    public function showLoginForm()
+    {
+        if (Auth::check()) {
             return redirect('dashboard');
-        }else{
+        } else {
             return view('login');
         }
     }
-    public function login(Request $request){
-       //VALIDASI INPUT
+    public function login(Request $request)
+    {
+        //VALIDASI INPUT
         $request->validate([
-        'name' => 'required',
-        'password' => 'required',
+            'name' => 'required',
+            'password' => 'required',
         ]);
-       
-       //CEK KREDENSIAL
-       if(Auth::attempt(['name' => $request->name, 'password' => $request->password])){
-        return redirect() -> intended('/dashboard');
-       }
-       return back()->with('error', 'Username atau password salah!');
+
+        //CEK KREDENSIAL
+        if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
+            return redirect()->intended('/dashboard');
+        }
+        return back()->with('error', 'Username atau password salah!');
     }
 
-    public function logout(Request $request){
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-
-    return redirect('login');
-}    
-    public function index(){
+        return redirect('login');
+    }
+    public function index()
+    {
         $user = Auth::user(); // ambil user yang sedang login
 
         if ($user->hasGlobalAccess()) {
@@ -48,41 +51,50 @@ class AspemController extends Controller
         } else {
             // User biasa hanya lihat data sesuai kabupaten_id mereka
             $aspem = Aspem::where('kabupaten_id', $user->kabupaten_id)->orderBy('created_at', 'desc')->get();
-        } 
+        }
         if (in_array($user->role, ['kajati', 'validator'])) {
-        abort(403, 'Akses ditolak.');
-    }
-        
-        return view('label.label',compact('aspem')); 
+            abort(403, 'Akses ditolak.');
+        }
+
+        return view('label.label', compact('aspem'));
     }
     public function create()
     {
-         $user = Auth::user(); // ambil user yang sedang login
-         if (in_array($user->role, ['kajati', 'validator'])) {
-        abort(403, 'Akses ditolak');
-    }
-        return view('label.create');
+        $user = Auth::user();
+        if ($user->hasGlobalAccess()) {
+            $satkerUsers = User::select('id', 'satuan_kerja')->distinct()->get();
+        } else {
+            $satkerUsers = collect([$user]);
+        }
+        if (in_array($user->role, ['kajati', 'validator'])) {
+            abort(403, 'Akses ditolak');
+        }
+        return view('label.create', compact('satkerUsers', 'user'));
     }
     public function store(Request $request)
     {
         // Validasi input
-        $request->validate([
-            'register_perkara' => 'required|max:100',
-            'barang_bukti' => 'required|max:255',
-            'tanggal_barbuk' => 'required|date',
-            'keterangan' => 'nullable|string',
-        ],
-        [
-            'register_perkara.required' => 'Register perkara wajib diisi',
-            'register_perkara.max' => 'Maksimal 100 karakter',
-            'barang_bukti.required' => 'Barang bukti wajib diisi',
-            'barang_bukti.max' => 'Maksimal 255 karakter',
-            'tanggal_barbuk.required' => 'Tanggal barbuk wajib diisi',
-            'tanggal_barbuk.date' => 'Format tanggal tidak valid',
-        ]);
+        $request->validate(
+            [
+                'register_perkara' => 'required|max:100',
+                'satuan_kerja' => 'required|max:100',
+                'barang_bukti' => 'required|max:255',
+                'tanggal_barbuk' => 'required|date',
+                'keterangan' => 'nullable|string',
+            ],
+            [
+                'register_perkara.required' => 'Register perkara wajib diisi',
+                'register_perkara.max' => 'Maksimal 100 karakter',
+                'barang_bukti.required' => 'Barang bukti wajib diisi',
+                'barang_bukti.max' => 'Maksimal 255 karakter',
+                'tanggal_barbuk.required' => 'Tanggal barbuk wajib diisi',
+                'tanggal_barbuk.date' => 'Format tanggal tidak valid',
+            ],
+        );
 
         DB::table('aspems')->insert([
             'register_perkara' => $request->register_perkara,
+            'satuan_kerja' => $request->satuan_kerja,
             'barang_bukti' => $request->barang_bukti,
             'tanggal_barbuk' => $request->tanggal_barbuk,
             'keterangan' => $request->keterangan,
@@ -97,31 +109,33 @@ class AspemController extends Controller
     public function update(Request $request, string $id)
     {
         // Validasi input
-        $request->validate([
-            'register_perkara' => 'required|max:100',
-            'barang_bukti' => 'required|max:100',
-            'tanggal_barbuk' => 'required|date',
-            'keterangan' => 'nullable|max:255',
-        ],
-        [
-            'register_perkara.required' => 'Register perkara wajib diisi.',
-            'register_perkara.max' => 'Register perkara maksimal 100 karakter.',
-            'barang_bukti.required' => 'Barang bukti wajib diisi.',
-            'barang_bukti.max' => 'Barang bukti maksimal 100 karakter.',
-            'tanggal_barbuk.required' => 'Tanggal wajib diisi.',
-            'tanggal_barbuk.date' => 'Format tanggal tidak valid.',
-            'keterangan.max' => 'Keterangan maksimal 255 karakter.',
-        ]);
-        $validated['kabupaten_id'] = Auth::user()->kabupaten_id;
-
+        $request->validate(
+            [
+                'register_perkara' => 'required|max:100',
+                'barang_bukti' => 'required|max:100',
+                'tanggal_barbuk' => 'required|date',
+                'keterangan' => 'nullable|max:255',
+            ],
+            [
+                'register_perkara.required' => 'Register perkara wajib diisi.',
+                'register_perkara.max' => 'Register perkara maksimal 100 karakter.',
+                'barang_bukti.required' => 'Barang bukti wajib diisi.',
+                'barang_bukti.max' => 'Barang bukti maksimal 100 karakter.',
+                'tanggal_barbuk.required' => 'Tanggal wajib diisi.',
+                'tanggal_barbuk.date' => 'Format tanggal tidak valid.',
+                'keterangan.max' => 'Keterangan maksimal 255 karakter.',
+            ],
+        );
 
         // Update data aspem
-        DB::table('aspems')->where('id', $id)->update([
-            'register_perkara' => $request->register_perkara,
-            'barang_bukti' => $request->barang_bukti,
-            'tanggal_barbuk' => $request->tanggal_barbuk,
-            'keterangan' => $request->keterangan,
-        ]);
+        DB::table('aspems')
+            ->where('id', $id)
+            ->update([
+                'register_perkara' => $request->register_perkara,
+                'barang_bukti' => $request->barang_bukti,
+                'tanggal_barbuk' => $request->tanggal_barbuk,
+                'keterangan' => $request->keterangan,
+            ]);
 
         // Redirect ke halaman index aspem
         return redirect()->route('label.index')->with('success', 'Data berhasil diupdate.');
@@ -129,12 +143,7 @@ class AspemController extends Controller
     public function destroy(Aspem $id)
     {
         $id->delete();
-        
-        return redirect()->route('label.index')
-                ->with('success','Data berhasil di hapus' );
+
+        return redirect()->route('label.index')->with('success', 'Data berhasil di hapus');
     }
-    
-
-
 }
-

@@ -24,6 +24,26 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="satuan_kerja">Satuan Kerja</label>
+                        @if ($user->hasGlobalAccess())
+                            <select name="satuan_kerja" class="form-control @error('satuan_kerja') is-invalid @enderror">
+                                <option value="">-- Pilih Satuan Kerja --</option>
+                                @foreach ($satkerUsers as $item)
+                                    <option value="{{ $item->satuan_kerja }}"
+                                        {{ old('satuan_kerja') == $item->satuan_kerja ? 'selected' : '' }}>
+                                        {{ $item->satuan_kerja }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input type="text" class="form-control" value="{{ $user->satuan_kerja }}" readonly>
+                            <input type="hidden" name="satuan_kerja" value="{{ $user->satuan_kerja }}">
+                        @endif
+                        @error('satuan_kerja')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="form-group mb-3">
                         <label for="barang_bukti">Barang Bukti:</label>

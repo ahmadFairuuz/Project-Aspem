@@ -13,6 +13,10 @@ class Perkara extends Model
     'register_perkara',
     'tanggal_input',
     'satuan_kerja',
+    'jaksa',
+    'pasal_dakwaan',
+    'pasal_terbukti',
+    'status',
     'nama_barang',
     'nama_terpidana',
     'barang_bukti',
@@ -20,7 +24,6 @@ class Perkara extends Model
     'status_perkara',
     'jenis_perkara',
     'no_putusan_inkraft',
-    'kabupaten_id',
 
 ];
 

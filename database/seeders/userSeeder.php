@@ -218,7 +218,7 @@ class userSeeder extends Seeder
 [
             'name' => 'signer-lamtim',
             'email' => 'lamtim1@example.com',
-            'satuan_kerja' => 'Kejaksaan Negeri lamtim',
+            'satuan_kerja' => 'Kejaksaan Negeri Lampung Timur',
             'password' => Hash::make('lamtim123'),
             'created_at'       => now(),
             'updated_at'       => now(),

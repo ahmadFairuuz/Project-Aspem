@@ -12,13 +12,15 @@
                 <a href="{{ route('label.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
             </div>
             <div class="card-body">
+                <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="dataTable">
                     {{-- SECTION: Header tabel --}}
-                    <thead class="table-primary">
+                    <thead class="table-dark">
                         <tr>
                              
                             <th>No</th>
                             <th>Register Perkara</th>
+                            <th>Satuan Kerja</th>
                             <th>Barang Bukti</th>
                             <th>Tanggal Barbuk</th>
                             <th>Keterangan</th>
@@ -33,6 +35,7 @@
                                 
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->register_perkara }}</td>
+                                <td>{{ $item->satuan_kerja }}</td>
                                 <td>{{ $item->barang_bukti }}</td>
                                 <td>{{ $item->tanggal_barbuk }}</td>
                                 <td>{{ $item->keterangan }}</td>
@@ -53,6 +56,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         {{-- END Card --}}

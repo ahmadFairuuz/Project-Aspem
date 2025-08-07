@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('register_perkara');
             $table->date('tanggal_input');
             $table->string('satuan_kerja');
+            $table->string('jaksa');
+            $table->string('pasal_dakwaan');
+            $table->string('pasal_terbukti');
+            $table->string('status');
             $table->string('nama_barang');
             $table->string('nama_terpidana');
             $table->string('barang_bukti');
@@ -24,7 +28,6 @@ return new class extends Migration
             $table->enum('status_perkara', ['DISETUJUI', 'PENDING', 'DITOLAK'])->default('PENDING');
             $table->string('jenis_perkara');
             $table->string('no_putusan_inkraft');
-            $table->unsignedBigInteger('kabupaten_id');
             $table->timestamps();
         });
     }

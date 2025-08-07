@@ -2,12 +2,10 @@
 
 namespace App\Exports;
 
-use App\Models\User;
 use App\Models\Perkara;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-    
 class PerkaraExport implements FromCollection, WithHeadings
 {
     public function collection()
@@ -16,6 +14,10 @@ class PerkaraExport implements FromCollection, WithHeadings
             'register_perkara',
             'tanggal_input',
             'satuan_kerja',
+            'jaksa',
+            'pasal_dakwaan',
+            'pasal_terbukti',
+            'status',
             'nama_barang',
             'nama_terpidana',
             'barang_bukti',
@@ -23,7 +25,6 @@ class PerkaraExport implements FromCollection, WithHeadings
             'status_perkara',
             'jenis_perkara',
             'no_putusan_inkraft',
-            'kabupaten_id',
             'created_at'
         )->get();
     }
@@ -34,6 +35,10 @@ class PerkaraExport implements FromCollection, WithHeadings
             'Register Perkara',
             'Tanggal Input',
             'Satuan Kerja',
+            'Jaksa',
+            'Pasal Dakwaan',
+            'Pasal Terbukti',
+            'Status',
             'Nama Barang',
             'Nama Terpidana',
             'Barang Bukti',
@@ -41,7 +46,6 @@ class PerkaraExport implements FromCollection, WithHeadings
             'Status Perkara',
             'Jenis Perkara',
             'No Putusan Inkraft',
-            'Kabupaten ID',
             'Created At'
         ];
     }

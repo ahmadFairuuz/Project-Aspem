@@ -35,6 +35,10 @@
                                 <th>No</th>
                                 <th>Register Perkara</th>
                                 <th>Satuan Kerja</th>
+                                <th>Jaksa</th>
+                                <th>Pasal Dakwaan</th>
+                                <th>Pasal Terbukti</th>
+                                <th>Status</th>
                                 <th>Nama Barang</th>
                                 <th>Nama Terpidana</th>
                                 <th>Barang Bukti</th>
@@ -53,6 +57,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->register_perkara }}</td>
                                     <td>{{ $item->satuan_kerja }}</td>
+                                    <td>{{ $item->jaksa }}</td>
+                                    <td>{{ $item->pasal_dakwaan }}</td>
+                                    <td>{{ $item->pasal_terbukti }}</td>
+                                    <td>{{ $item->status }}</td>
                                     <td>{{ $item->nama_barang }}</td>
                                     <td>{{ $item->nama_terpidana }}</td>
                                     <td>{{ $item->barang_bukti }}</td>

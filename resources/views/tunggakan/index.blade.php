@@ -23,8 +23,9 @@
         </div>
 
         <div class="card-body">
+            <div class="table-responsive">
             <table id="dataTable" class="table table-bordered">
-                <thead>
+                <thead class="table-dark">
                     <tr>
                         <th>No</th>
                         <th>No. Putusan</th>
@@ -56,6 +57,7 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
             {{ $data->links() }}
         </div>
     </div>

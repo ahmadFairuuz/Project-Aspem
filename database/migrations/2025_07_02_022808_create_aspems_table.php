@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('register_perkara');
+            $table->string('satuan_kerja');
             $table->string('barang_bukti');
             $table->string('tanggal_barbuk');
             $table->text('keterangan');
-            $table->unsignedBigInteger('kabupaten_id');
         });
     }
 
