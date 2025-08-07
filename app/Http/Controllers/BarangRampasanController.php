@@ -81,6 +81,24 @@ class BarangRampasanController extends Controller
         return redirect()->route('barang-rampasan.index')->with('success', 'Data berhasil diperbarui.');
     }
 
+// public function updateBidang(Request $request, $id)
+// {
+//     // Validasi input bidang hanya boleh 'Pidsus' atau 'Pidum'
+//     $request->validate([
+//         'bidang' => 'required|in:Pidsus,Pidum',
+//     ]);
+
+//     // Temukan data berdasarkan ID
+//     $barang = BarangRampasan::findOrFail($id);
+
+//     // Update bidang
+//     $barang->bidang = $request->bidang;
+//     $barang->save();
+
+//     // Kembali ke halaman sebelumnya dengan pesan sukses
+//     return back()->with('success', 'Bidang berhasil diperbarui');
+// }
+
     public function destroy(BarangRampasan $barangRampasan)
     {
         $barangRampasan->delete();

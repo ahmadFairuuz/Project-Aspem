@@ -1,6 +1,6 @@
-@extends('layout.main')
+<!-- @extends('layout.main')
 
-@section('title', 'Index Data Barang Rampasan')
+@section('title', 'Data Barang Rampasan')
 
 @section('content')
 <div class="container-fluid px-4">
@@ -62,4 +62,4 @@
             $('#dataTable').DataTable(); // inisialisasi datatable
         });
     </script>
-@endpush
+@endpush -->

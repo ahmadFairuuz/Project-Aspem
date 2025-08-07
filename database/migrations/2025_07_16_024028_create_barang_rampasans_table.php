@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('status', ['PENGEMBALIAN', 'PENGAMBILAN'])->default('PENGEMBALIAN');
             $table->date('tgl_cetak');
             $table->unsignedBigInteger('kabupaten_id');
+            //  $table->enum('bidang', ['Pidsus', 'Pidum' ])->default('Pidum'); // Atau ->default('Pidum')
 
 });
      }
