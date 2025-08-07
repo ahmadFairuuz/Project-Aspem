@@ -23,21 +23,42 @@
             <input type="text" name="satuan_kerja" class="form-control" value="{{ old('satuan_kerja') }}" required>
         </div>
 
+        <div class="mb-3">
+    <label class="form-label">Jenis Barang Rampasan</label>
+    <select name="jenis_barang_rampasan" class="form-select" required>
         @foreach ([
-            'tanah_dan_bangunan' => 'Tanah dan Bangunan',
-            'hewan_dan_tanaman' => 'Hewan dan Tanaman',
-            'peralatan_dan_mesin' => 'Peralatan dan Mesin',
-            'aset_tetap_lainnya' => 'Aset Tetap Lainnya',
-            'aset_lain_lain' => 'Aset Lain-lain',
-            'barang_persediaan' => 'Barang Persediaan',
-            'jumlah_total' => 'Jumlah Total',
-            'keterangan' => 'Keterangan'
-        ] as $field => $label)
-            <div class="mb-3">
-                <label class="form-label">{{ $label }}</label>
-                <textarea name="{{ $field }}" class="form-control">{{ old($field) }}</textarea>
-            </div>
+            'Tanah dan Bangunan',
+            'Hewan dan Tanaman',
+            'Peralatan dan Mesin',
+            'Aset Tetap Lainnya',
+            'Aset Lain-lain'
+        ] as $jenis)
+            <option value="{{ $jenis }}" {{ old('jenis_barang_rampasan') == $jenis ? 'selected' : '' }}>
+                {{ $jenis }}
+            </option>
         @endforeach
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Deskripsi Barang Rampasan</label>
+    <textarea name="deskripsi" class="form-control">{{ old('deskripsi') }}</textarea>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Barang Persediaan</label>
+    <input type="text" name="barang_persediaan" class="form-control" value="{{ old('barang_persediaan') }}">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Jumlah Total</label>
+    <input type="text" name="jumlah_total" class="form-control" value="{{ old('jumlah_total') }}">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Keterangan</label>
+    <textarea name="keterangan" class="form-control">{{ old('keterangan') }}</textarea>
+</div>
 
         <div class="mb-3">
             <label class="form-label">Status</label>

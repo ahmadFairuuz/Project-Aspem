@@ -11,29 +11,35 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('rekap_barang_rampasan', function (Blueprint $table) {
-    $table->id();
-    $table->string('satuan_kerja');
-    $table->text('tanah_dan_bangunan')->nullable();
-    $table->text('hewan_dan_tanaman')->nullable();
-    $table->text('peralatan_dan_mesin')->nullable();
-    $table->text('aset_tetap_lainnya')->nullable();
-    $table->text('aset_lain_lain')->nullable();
-    $table->text('barang_persediaan')->nullable();
-    $table->string('jumlah_total')->nullable();
-    $table->text('keterangan')->nullable();
+        Schema::create('rekap_barang_rampasan', function (Blueprint $table) {
+            $table->id();
+            $table->string('satuan_kerja');
 
-    $table->enum('status', [
-        'Belum memiliki nilai taksir',
-        'Memiliki nilai taksir',
-        'Terjual'
-    ])->default('Belum memiliki nilai taksir');
+            // Kolom enum pengganti banyak kolom
+            $table->enum('jenis_barang_rampasan', [
+                'Tanah dan Bangunan',
+                'Hewan dan Tanaman',
+                'Peralatan dan Mesin',
+                'Aset Tetap Lainnya',
+                'Aset Lain-lain'
+            ]);
 
-    $table->enum('bidang', ['Pidsus', 'Pidum'])->default('Pidsus');
+            // Kolom deskripsi/isi untuk barang rampasan tersebut
+            $table->text('deskripsi')->nullable();
+            $table->text('barang_persediaan')->nullable();
+            $table->string('jumlah_total')->nullable();
+            $table->text('keterangan')->nullable();
 
-    $table->timestamps();
-});
+            $table->enum('status', [
+                'Belum memiliki nilai taksir',
+                'Memiliki nilai taksir',
+                'Terjual'
+            ])->default('Belum memiliki nilai taksir');
 
+            $table->enum('bidang', ['Pidsus', 'Pidum'])->default('Pidsus');
+
+            $table->timestamps();
+        });
     }
 
     /**

@@ -14,12 +14,9 @@ class RekapBarangRampasan extends Model
 
     protected $fillable = [
         'satuan_kerja',
-        'tanah_dan_bangunan',
-        'hewan_dan_tanaman',
-        'peralatan_dan_mesin',
-        'aset_tetap_lainnya',
-        'aset_lain_lain',
+        'jenis_barang_rampasan',
         'barang_persediaan',
+        'deskripsi_barang',
         'jumlah_total',
         'keterangan',
         'status', // enum: Belum memiliki nilai taksir, Memiliki nilai taksir, Terjual

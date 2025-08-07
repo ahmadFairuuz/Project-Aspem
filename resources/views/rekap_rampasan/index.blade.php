@@ -43,11 +43,8 @@
                 <tr>
                     <th>No</th>
                     <th>Satuan Kerja</th>
-                    <th>Tanah dan Bangunan</th>
-                    <th>Hewan dan Tanaman</th>
-                    <th>Peralatan dan Mesin</th>
-                    <th>Aset Tetap Lainnya</th>
-                    <th>Aset Lain-lain</th>
+                    <th>Jenis Barang Rampasan</th>
+                    <th>Deskripsi Barang Rampasan</th>
                     <th>Barang Persediaan</th>
                     <th>Jumlah Total</th>
                     <th>Keterangan</th>
@@ -62,11 +59,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->satuan_kerja }}</td>
-                    <td>{{ $item->tanah_dan_bangunan }}</td>
-                    <td>{{ $item->hewan_dan_tanaman }}</td>
-                    <td>{{ $item->peralatan_dan_mesin }}</td>
-                    <td>{{ $item->aset_tetap_lainnya }}</td>
-                    <td>{{ $item->aset_lain_lain }}</td>
+                    <td>{{ $item->jenis_barang_rampasan }}</td>
                     <td>{{ $item->barang_persediaan }}</td>
                     <td>{{ $item->jumlah_total }}</td>
                     <td>{{ $item->keterangan }}</td>
@@ -84,7 +77,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="14" class="text-center">Data tidak tersedia.</td>
+                    <td colspan="10" class="text-center">Data tidak tersedia.</td>
                 </tr>
                 @endforelse
             </tbody>
@@ -94,14 +87,11 @@
 @endsection
 
 @push('scripts')
-    @push('scripts')
-    <script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable(); // inisialisasi datatable
-        });
-    </script>
+<script src="{{ asset('sadmin2/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('sadmin2/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
 @endpush
-

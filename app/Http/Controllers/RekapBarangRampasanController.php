@@ -29,11 +29,8 @@ class RekapBarangRampasanController
     {
         $validated = $request->validate([
             'satuan_kerja' => 'required|string',
-            'tanah_dan_bangunan' => 'nullable|string',
-            'hewan_dan_tanaman' => 'nullable|string',
-            'peralatan_dan_mesin' => 'nullable|string',
-            'aset_tetap_lainnya' => 'nullable|string',
-            'aset_lain_lain' => 'nullable|string',
+            'jenis_barang_rampasan' => 'required|string',
+            'deskripsi_barang_rampasan' => 'nullable|string',
             'barang_persediaan' => 'nullable|string',
             'jumlah_total' => 'nullable|string',
             'keterangan' => 'nullable|string',
@@ -73,6 +70,7 @@ class RekapBarangRampasanController
             'keterangan' => 'nullable|string',
             'status' => 'required|in:Belum memiliki nilai taksir,Memiliki nilai taksir,Terjual',
             'bidang' => 'required|in:Pidsus,Pidum',
+            
         ]);
 
         $rekap->update($validated);
