@@ -62,6 +62,11 @@
                      <span>Barang Rampasan</span></a>
              </li>
          @endif
+             <li class="nav-item {{ request()->routeIs('pnbp.index') ? 'active' : '' }}">
+                 <a class="nav-link" href="{{ route('pnbp.index') }}">
+                     <i class="fas fa-fw fa-dollar-sign" aria-hidden="true"></i>
+                     <span>PNBP</span></a>
+             </li>
 
          <!-- Divider -->
          <hr class="sidebar-divider">
