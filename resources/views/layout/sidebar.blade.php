@@ -25,6 +25,15 @@
                  <i class="fas fa-fw fa-regular fa-list-ol" aria-hidden="true"></i>
                  <span>Daftar Perkara</span></a>
          </li>
+
+         <li class="nav-item {{ request()->routeIs('rekap-barang-rampasan.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('rekap-barang-rampasan.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Rekap Barang Rampasan</span>
+        </a>
+    </li>
+
+
          @if ($role !== 'kajati')
              <li class="nav-item {{ request()->routeIs('perkara.create') ? 'active' : '' }}">
                  <a class="nav-link" href="{{ route('perkara.create') }}">

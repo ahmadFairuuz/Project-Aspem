@@ -9,6 +9,7 @@ use App\Http\Controllers\LabelController;
 use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\BarangRampasanController;
 use App\Http\Controllers\TunggakanController;
+use App\Http\Controllers\RekapBarangRampasanController;
 
 Route::get('/', [AspemController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AspemController::class, 'login'])->name('login');
@@ -31,10 +32,11 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/label/generate/{id}', [LabelController::class, 'generate'])->name('label.generate');
 
     Route::get('/barang-rampasan', [BarangRampasanController::class, 'index'])->name('barang-rampasan.index');
-    Route::get('/barang-rampasan/aktivitas', [BarangRampasanController::class, 'aktivitas'])->name('barang-rampasan.aktivitas');
+    // Route::get('/barang-rampasan/aktivitas', [BarangRampasanController::class, 'aktivitas'])->name('barang-rampasan.aktivitas');
     route::delete('/barang-rampasan/delete{id}', [BarangRampasanController::class, 'destroy'])->name('barang-rampasan.destroy');
     Route::get('/barang-rampasan/export', [BarangRampasanController::class, 'export'])->name('barang-rampasan.export');
     Route::post('/barang-rampasan/import', [BarangRampasanController::class, 'import'])->name('barang-rampasan.import');
+    // Route::put('/barangrampasan/update-bidang/{id}', [BarangRampasanController::class, 'updateBidang'])->name('barangrampasan.updateBidang');
 
     Route::get('/perkara', [PerkaraController::class, 'index'])->name('perkara.index');
     Route::get('/perkara/create', [PerkaraController::class, 'create'])->name('perkara.create');
@@ -60,10 +62,21 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/tunggakan/create', [TunggakanController::class, 'create'])->name('tunggakan.create');
     Route::post('/tunggakan/store', [TunggakanController::class, 'store'])->name('tunggakan.store');
     Route::get('/tunggakan/{id}/edit', [TunggakanController::class, 'edit'])->name('tunggakan.edit');
-Route::put('/tunggakan/{id}', [TunggakanController::class, 'update'])->name('tunggakan.update');
-Route::delete('/tunggakan/{id}', [TunggakanController::class, 'destroy'])->name('tunggakan.destroy');
-Route::get('/tunggakan/export', [TunggakanController::class, 'export'])->name('tunggakan.export');
-Route::post('/tunggakan/import', [TunggakanController::class, 'import'])->name('tunggakan.import');
+    Route::put('/tunggakan/{id}', [TunggakanController::class, 'update'])->name('tunggakan.update');
+    Route::delete('/tunggakan/{id}', [TunggakanController::class, 'destroy'])->name('tunggakan.destroy');
+    Route::get('/tunggakan/export', [TunggakanController::class, 'export'])->name('tunggakan.export');
+    Route::post('/tunggakan/import', [TunggakanController::class, 'import'])->name('tunggakan.import');
+
+
+    Route::get('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'index'])->name('rekap-barang-rampasan.index');
+    Route::get('/rekap-barang-rampasan/create', [RekapBarangRampasanController::class, 'create'])->name('rekap-barang-rampasan.create');
+    Route::post('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'store'])->name('rekap-barang-rampasan.store');
+    Route::get('/rekap-barang-rampasan/{id}/edit', [RekapBarangRampasanController::class, 'edit'])->name('rekap-barang-rampasan.edit');
+    Route::put('/rekap-barang-rampasan/{id}', [RekapBarangRampasanController::class, 'update'])->name('rekap-barang-rampasan.update');
+    Route::delete('/rekap-barang-rampasan/{id}', [RekapBarangRampasanController::class, 'destroy'])->name('rekap-barang-rampasan.destroy');
+
+
+
 
     
 });

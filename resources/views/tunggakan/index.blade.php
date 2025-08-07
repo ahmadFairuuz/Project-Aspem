@@ -22,8 +22,8 @@
             </div>
         </div>
 
-        <div class="card-body">
-            <table id="dataTable" class="table table-bordered">
+        <div class="table-responsive">
+            <table id="dataTable" class="table table-bordered" style="widht:100%">
                 <thead>
                     <tr>
                         <th>No</th>
