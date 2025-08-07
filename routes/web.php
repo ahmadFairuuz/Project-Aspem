@@ -3,9 +3,10 @@
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\PNBPController;
 use App\Http\Controllers\AspemController;
-use App\Http\Controllers\PerkaraController;
 use App\Http\Controllers\LabelController;
+use App\Http\Controllers\PerkaraController;
 use App\Http\Middleware\PreventBackHistory;
 use App\Http\Controllers\BarangRampasanController;
 
@@ -26,7 +27,6 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     route::get('/label/edit{id}', [AspemController::class, 'edit'])->name('label.edit');
     route::put('/label/update{id}', [AspemController::class, 'update'])->name('label.update');
     route::delete('/label/delete{id}', [AspemController::class, 'destroy'])->name('label.destroy');
-
     Route::get('/label/generate/{id}', [LabelController::class, 'generate'])->name('label.generate');
 
     Route::get('/barang-rampasan', [BarangRampasanController::class, 'index'])->name('barang-rampasan.index');
@@ -46,11 +46,15 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/perkara/validasi', [PerkaraController::class, 'validasi'])->name('perkara.validasi');
     Route::patch('/perkara/{id}/status', [PerkaraController::class, 'updateStatus'])->name('perkara.updateStatus');
 
-
     Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
     Route::get('/akun/edit{id}', [AkunController::class, 'edit'])->name('akun.edit');
     Route::put('/akun/update{id}', [AkunController::class, 'update'])->name('akun.update');
 
     Route::get('/export', [AkunController::class, 'export']);
     Route::post('/import', [AkunController::class, 'import']);
+    
+    Route::get('/pnbp', [PNBPController::class, 'index'])->name('pnbp.index');
+    Route::get('/pnbp/create', [PNBPController::class, 'create'])->name('pnbp.create');
+    Route::post('/pnbp/store', [PNBPController::class, 'store'])->name('pnbp.store');
+    Route::get('/pnbp/export', [PNBPController::class, 'export'])->name('pnbp.export');
 });
