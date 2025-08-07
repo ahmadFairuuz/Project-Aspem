@@ -38,6 +38,12 @@
                      <i class="fas fa-fw fa-qrcode"></i>
                      <span>Label Generator</span>
                  </a>
+                <li class="nav-item {{ request()->routeIs('tunggakan.index') ? 'active' : '' }}">
+                 <a class="nav-link" href="{{ route('tunggakan.index') }}">
+                     <i class="fas fa-fw fa-qrcode"></i>
+                     <span>Data Tunggakan</span>
+                 </a>
+
              </li>
          @endif
          @if ($role !== 'kajati')
