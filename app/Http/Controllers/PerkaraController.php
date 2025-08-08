@@ -6,6 +6,7 @@ use App\Models\Perkara;
 use Illuminate\Http\Request;
 use App\Exports\PerkaraExport;
 use App\Imports\PerkaraImport;
+use App\Models\BarangRampasan;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +54,6 @@ class PerkaraController extends Controller
                 'pasal_dakwaan' => 'required|string',
                 'pasal_terbukti' => 'required|string',
                 'status' => 'required|string',
-                'nama_barang' => 'required|string',
                 'nama_terpidana' => 'required|string',
                 'barang_bukti' => 'required|string|max:255',
                 'keterangan_barang_bukti' => 'required|string',
@@ -73,7 +73,29 @@ class PerkaraController extends Controller
         );
 
         // Simpan data ke tabel perkara
-        Perkara::create($validated);
+        $perkara = Perkara::create([
+            'register_perkara' => $request->register_perkara,
+            'tanggal_input' => $request->tanggal_input,
+            'satuan_kerja' => $request->satuan_kerja,
+            'jaksa' => $request->jaksa,
+            'pasal_dakwaan' => $request->pasal_dakwaan,
+            'pasal_terbukti' => $request->pasal_terbukti,
+            'status' => $request->status,
+            'nama_terpidana' => $request->nama_terpidana,
+            'barang_bukti' => $request->barang_bukti,
+            'keterangan_barang_bukti' => $request->keterangan_barang_bukti,
+            'jenis_perkara' => $request->jenis_perkara,
+            'no_putusan_inkraft' => $request->no_putusan_inkraft,
+        ]);
+
+        BarangRampasan::create([
+            'perkara_id' => $perkara->id,
+            'register_perkara' => $perkara->register_perkara,
+            'satuan_kerja' => $perkara->satuan_kerja,
+            'barang_bukti' => $perkara->barang_bukti,
+            'tgl_cetak' => now(),
+            'status' => 'PENGEMBALIAN',
+        ]);
 
         return redirect()->route('perkara.index')->with('success', 'Data perkara berhasil ditambahkan.');
     }

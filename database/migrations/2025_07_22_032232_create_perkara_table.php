@@ -21,9 +21,8 @@ return new class extends Migration
             $table->string('pasal_dakwaan');
             $table->string('pasal_terbukti');
             $table->string('status');
-            $table->string('nama_barang');
             $table->string('nama_terpidana');
-            $table->string('barang_bukti');
+            $table->text('barang_bukti');
             $table->string('keterangan_barang_bukti');
             $table->enum('status_perkara', ['DISETUJUI', 'PENDING', 'DITOLAK'])->default('PENDING');
             $table->string('jenis_perkara');

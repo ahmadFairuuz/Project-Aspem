@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
             userSeeder::class,
             AspemSeeder::class,
             daftarPerkara::class,
-            BarangRampasanSeeder::class,
+            // BarangRampasanSeeder::class,
             PNBPSeeder::class,
             TunggakanSeeder::class,
         ]);

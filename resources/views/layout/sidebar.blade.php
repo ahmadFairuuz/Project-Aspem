@@ -5,12 +5,18 @@
  <div>
      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
          <!-- Sidebar - Brand -->
-         <div class="sidebar-brand d-flex flex-column align-items-center justify-content-center my-3">
-             <div class="sidebar-brand-icon">
-                 <img src="{{ asset('image/LOGO KEJAKSAAN.png') }}" alt="Logo" style="height: 70px;">
+         <div class="sidebar-brand d-flex flex-column align-items-center justify-content-center mt-4 mb-4">
+             <div class="sidebar-brand-icon d-flex align-items-center justify-content-center" style="gap: 5px;">
+                 <img src="{{ asset('image/LOGO KEJAKSAAN.png') }}" alt="Logo Kejaksaan" style="height: 60px;">
+                 <img src="{{ asset('image/logo_bpa.png') }}" alt="Logo BPA" style="height: 50px;">
              </div>
-             <div class="sidebar-brand-text text-center"> <sup>Pemulihan Aset</sup></div>
+             <div class="sidebar-brand-text text-center mt-2">
+                 <sup>Pemulihan Aset</sup>
+             </div>
          </div>
+
+
+
 
          <!-- Divider -->
          <hr class="sidebar-divider my-0">
@@ -25,34 +31,11 @@
                  <i class="fas fa-fw fa-regular fa-list-ol" aria-hidden="true"></i>
                  <span>Daftar Perkara</span></a>
          </li>
-
-         <li class="nav-item {{ request()->routeIs('rekap-barang-rampasan.*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('rekap-barang-rampasan.index') }}">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Rekap Barang Rampasan</span>
-        </a>
-    </li>
-
-
          @if ($role !== 'kajati')
              <li class="nav-item {{ request()->routeIs('perkara.create') ? 'active' : '' }}">
                  <a class="nav-link" href="{{ route('perkara.create') }}">
                      <i class="fas fa-fw fa-plus" aria-hidden="true"></i>
                      <span>Tambah Perkara</span></a>
-             </li>
-         @endif
-         @if ($role !== 'kajati' && $role !== 'validator')
-             <li class="nav-item {{ request()->routeIs('label.index') ? 'active' : '' }}">
-                 <a class="nav-link" href="{{ route('label.index') }}">
-                     <i class="fas fa-fw fa-qrcode"></i>
-                     <span>Label Generator</span>
-                 </a>
-                <li class="nav-item {{ request()->routeIs('tunggakan.index') ? 'active' : '' }}">
-                 <a class="nav-link" href="{{ route('tunggakan.index') }}">
-                     <i class="fas fa-fw fa-qrcode"></i>
-                     <span>Data Tunggakan</span>
-                 </a>
-
              </li>
          @endif
          @if ($role !== 'kajati')
@@ -62,34 +45,31 @@
                      <span>Barang Rampasan</span></a>
              </li>
          @endif
-             <li class="nav-item {{ request()->routeIs('pnbp.index') ? 'active' : '' }}">
-                 <a class="nav-link" href="{{ route('pnbp.index') }}">
-                     <i class="fas fa-fw fa-dollar-sign" aria-hidden="true"></i>
-                     <span>PNBP</span></a>
-             </li>
-
-         <!-- Divider -->
-         <hr class="sidebar-divider">
-         <!-- Heading -->
-         <div class="sidebar-heading">
-             Interface
-         </div>
-         <!-- Nav Item - Pages Collapse Menu -->
-         <li class="nav-item">
-             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                 aria-expanded="true" aria-controls="collapseTwo">
-                 <i class="fas fa-fw fa-cog"></i>
-                 <span>Components</span>
-             </a>
-             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                 <div class="bg-white py-2 collapse-inner rounded">
-                     <h6 class="collapse-header">Custom Components:</h6>
-                     <a class="collapse-item" href="buttons.html">Buttons</a>
-                     <a class="collapse-item" href="cards.html">Cards</a>
-                 </div>
-             </div>
+         @if ($role !== 'kajati' && $role !== 'validator')
+             <li class="nav-item {{ request()->routeIs('label.index') ? 'active' : '' }}">
+                 <a class="nav-link" href="{{ route('label.index') }}">
+                     <i class="fas fa-fw fa-qrcode"></i>
+                     <span>Label Generator</span>
+                 </a>
+         @endif
+         <li class="nav-item {{ request()->routeIs('pnbp.index') ? 'active' : '' }}">
+             <a class="nav-link" href="{{ route('pnbp.index') }}">
+                 <i class="fas fa-fw fa-dollar-sign" aria-hidden="true"></i>
+                 <span>PNBP</span></a>
          </li>
 
+         <li class="nav-item {{ request()->routeIs('rekap-barang-rampasan.*') ? 'active' : '' }}">
+             <a class="nav-link" href="{{ route('rekap-barang-rampasan.index') }}">
+                 <i class="fas fa-fw fa-file-alt"></i>
+                 <span>Rekap Barang Rampasan</span>
+             </a>
+         </li>
+         <li class="nav-item {{ request()->routeIs('tunggakan.index') ? 'active' : '' }}">
+             <a class="nav-link" href="{{ route('tunggakan.index') }}">
+                 <i class="fas fa-fw fa-chart-line"></i>
+                 <span>Data Tunggakan</span>
+             </a>
+         </li>
          <!-- Divider -->
          <hr class="sidebar-divider">
 
@@ -105,11 +85,11 @@
              </form>
          </li>
          @if ($role !== 'super admin')
-         <li class="nav-item {{ request()->routeIs('akun.index') ? 'active' : '' }}">
-             <a class="nav-link" href="{{ route('akun.index') }}">
-                 <i class="fas fa-fw fa-user" aria-hidden="true"></i>
-                 <span>Kelola Akun</span></a>
-         </li>    
+             <li class="nav-item {{ request()->routeIs('akun.index') ? 'active' : '' }}">
+                 <a class="nav-link" href="{{ route('akun.index') }}">
+                     <i class="fas fa-fw fa-user" aria-hidden="true"></i>
+                     <span>Kelola Akun</span></a>
+             </li>
          @endif
 
          <!-- Divider -->

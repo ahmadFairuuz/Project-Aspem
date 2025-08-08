@@ -11,14 +11,9 @@ class BarangRampasan extends Model
 
     protected $table = 'barang_rampasan';
 
-    protected $fillable = [
-        'register_perkara',
-        'nama_barang',
-        'tgl_pengambilan',
-        'keterangan_pengambilan',
-        'tgl_pengembalian',
-        'keterangan_pengembalian',
-        'status',
-        'tgl_cetak',
-    ];
+    protected $fillable = ['register_perkara','satuan_kerja', 'barang_bukti', 'tgl_pengambilan', 'keterangan_pengambilan', 'tgl_pengembalian', 'keterangan_pengembalian', 'status', 'tgl_cetak'];
+    public function perkara()
+    {
+        return $this->belongsTo(Perkara::class);
+    }
 }

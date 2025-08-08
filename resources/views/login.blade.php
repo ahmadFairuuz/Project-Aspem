@@ -37,14 +37,14 @@
         }
     </style>
     <script>
-    // Ini akan memanipulasi riwayat browser sehingga tidak bisa kembali
-    if (window.history && window.history.pushState) {
-        window.history.pushState('forward', '', window.location.href);
-        window.onpopstate = function() {
-            window.location.href = "{{ route('login.form') }}";
-        };
-    }
-</script>
+        // Ini akan memanipulasi riwayat browser sehingga tidak bisa kembali
+        if (window.history && window.history.pushState) {
+            window.history.pushState('forward', '', window.location.href);
+            window.onpopstate = function() {
+                window.location.href = "{{ route('login.form') }}";
+            };
+        }
+    </script>
 </head>
 
 <body>
@@ -52,8 +52,16 @@
         <div class="card login-card o-hidden border-0">
             <div class="card-body p-5">
                 <div class="text-center">
-                    <img src="{{ asset('image/LOGO KEJAKSAAN.png') }}" alt="Logo" class="img-fluid login-logo">
-                    <h1 class="h5 text-dark mb-4">Kejaksaan Tinggi Lampung</h1>
+
+                    <h1 class="h5 text-dark mb-2">Kejaksaan Tinggi Lampung</h1>
+                    <div class="sidebar-brand-icon d-flex align-items-center justify-content-center mx-0" style="gap: 5px;">
+                        <img src="{{ asset('image/LOGO KEJAKSAAN.png') }}" alt="Logo" class="img-fluid mx-2"
+                            style="height: 250px; width: auto;">
+                        <img src="{{ asset('image/logo_bpa.png') }}" alt="Logo" class="img-fluid mx-2"
+                            style="height: 200px; width: auto;">
+                    </div>
+                    <h1 class="h5 text-dark my-2"><strong>ARTISYS</strong></h1>
+                    <h1 class="h5 text-dark mb-2"><em>Asset-Recovery Tracking Integrated System</em></h1>
                 </div>
 
                 <hr>

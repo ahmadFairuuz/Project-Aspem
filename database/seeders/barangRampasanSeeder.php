@@ -12,8 +12,7 @@ class BarangRampasanSeeder extends Seeder
         $user = User::where('email', 'metro@example.com')->first();
         $data = [
             [
-                'register_perkara' => 'PDM-35/MTR/Eoh.2/05/2025',
-                'nama_barang' => 'BPKB Sepeda Motor Merk Yamaha Vixion / FZ150 warna putih nopol A 2462 BZ Noka MH33C1005CK878651 Nosin 3C1-879650 an. JUNOPAL NATA ATMAJA.',
+
                 'tgl_pengambilan' => '2025-06-17',
                 'keterangan_pengambilan' => 'SIDANG JAKSA AGISA',
                 'tgl_pengembalian' => '2025-06-17',

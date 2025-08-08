@@ -1,5 +1,7 @@
 <?php
 
+
+
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AkunController;
@@ -8,9 +10,10 @@ use App\Http\Controllers\AspemController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\PerkaraController;
 use App\Http\Middleware\PreventBackHistory;
-use App\Http\Controllers\BarangRampasanController;
 use App\Http\Controllers\TunggakanController;
+use App\Http\Controllers\BarangRampasanController;
 use App\Http\Controllers\RekapBarangRampasanController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [AspemController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AspemController::class, 'login'])->name('login');
@@ -19,9 +22,8 @@ Route::get('/login', [AspemController::class, 'showLoginForm'])->name('login.for
 Route::post('/logout', [AspemController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'prevent-back'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
     Route::get('/label', [AspemController::class, 'index'])->name('label.index');
     route::get('/label/create', [AspemController::class, 'create'])->name('label.create');
@@ -65,17 +67,14 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/tunggakan/create', [TunggakanController::class, 'create'])->name('tunggakan.create');
     Route::post('/tunggakan/store', [TunggakanController::class, 'store'])->name('tunggakan.store');
     Route::get('/tunggakan/{id}/edit', [TunggakanController::class, 'edit'])->name('tunggakan.edit');
-Route::put('/tunggakan/{id}', [TunggakanController::class, 'update'])->name('tunggakan.update');
-Route::delete('/tunggakan/{id}', [TunggakanController::class, 'destroy'])->name('tunggakan.destroy');
-Route::get('/tunggakan/export', [TunggakanController::class, 'export'])->name('tunggakan.export');
-Route::post('/tunggakan/import', [TunggakanController::class, 'import'])->name('tunggakan.import');
-Route::get('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'index'])->name('rekap-barang-rampasan.index');
+    Route::put('/tunggakan/{id}', [TunggakanController::class, 'update'])->name('tunggakan.update');
+    Route::delete('/tunggakan/{id}', [TunggakanController::class, 'destroy'])->name('tunggakan.destroy');
+    Route::get('/tunggakan/export', [TunggakanController::class, 'export'])->name('tunggakan.export');
+    Route::post('/tunggakan/import', [TunggakanController::class, 'import'])->name('tunggakan.import');
+    Route::get('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'index'])->name('rekap-barang-rampasan.index');
     Route::get('/rekap-barang-rampasan/create', [RekapBarangRampasanController::class, 'create'])->name('rekap-barang-rampasan.create');
     Route::post('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'store'])->name('rekap-barang-rampasan.store');
     Route::get('/rekap-barang-rampasan/{id}/edit', [RekapBarangRampasanController::class, 'edit'])->name('rekap-barang-rampasan.edit');
     Route::put('/rekap-barang-rampasan/{id}', [RekapBarangRampasanController::class, 'update'])->name('rekap-barang-rampasan.update');
     Route::delete('/rekap-barang-rampasan/{id}', [RekapBarangRampasanController::class, 'destroy'])->name('rekap-barang-rampasan.destroy');
-
-
-    
 });

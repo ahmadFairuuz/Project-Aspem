@@ -17,7 +17,6 @@ class Perkara extends Model
     'pasal_dakwaan',
     'pasal_terbukti',
     'status',
-    'nama_barang',
     'nama_terpidana',
     'barang_bukti',
     'keterangan_barang_bukti',
@@ -26,5 +25,9 @@ class Perkara extends Model
     'no_putusan_inkraft',
 
 ];
+public function barangRampasan()
+{
+    return $this->hasMany(BarangRampasan::class);
+}
 
 }

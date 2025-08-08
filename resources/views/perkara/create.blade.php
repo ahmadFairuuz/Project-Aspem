@@ -108,16 +108,6 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="nama_barang">Nama Barang</label>
-                        <input type="text" name="nama_barang"
-                            class="form-control @error('nama_barang') is-invalid @enderror"
-                            value="{{ old('nama_barang') }}">
-                        @error('nama_barang')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-3">
                         <label for="nama_terpidana">Nama Terpidana</label>
                         <input type="text" name="nama_terpidana"
                             class="form-control @error('nama_terpidana') is-invalid @enderror"
