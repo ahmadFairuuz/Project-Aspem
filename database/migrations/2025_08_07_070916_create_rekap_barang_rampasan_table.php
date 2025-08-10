@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->enum('jenis_barang_rampasan', ['Tanah dan Bangunan', 'Hewan dan Tanaman', 'Peralatan dan Mesin', 'Aset Tetap Lainnya', 'Aset Lain-lain']);
 
             // Kolom deskripsi/isi untuk barang rampasan tersebut
-            $table->text('deskripsi')->nullable();
+            $table->text('deskripsi_barang')->nullable();
             $table->text('barang_persediaan')->nullable();
             $table->string('jumlah_total')->nullable();
             $table->text('keterangan')->nullable();
@@ -37,5 +37,6 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('rekap_barang_rampasan');
+         $table->dropTimestamps();
     }
 };

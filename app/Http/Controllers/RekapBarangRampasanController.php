@@ -8,11 +8,15 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\RekapBarangRampasan;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\RekapBarangRampasanExport;
+use App\Imports\RekapBarangRampasanImport;
+
+use Maatwebsite\Excel\Facades\Excel;
 
 class RekapBarangRampasanController
 {
     // Tampilkan semua data
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user(); // ambil user yang sedang login
 
@@ -23,6 +27,26 @@ class RekapBarangRampasanController
             // User biasa hanya lihat data sesuai kabupaten_id mereka
             $rekap = RekapBarangRampasan::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->get();
         }
+
+        $query = RekapBarangRampasan::query();
+        // Filter Bidang
+        if ($request->filled('bidang')) {
+            $query->where('bidang', $request->bidang);
+        }
+
+        // Filter Status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Filter Rentang Waktu (dalam hari)
+        if ($request->filled('rentang')) {
+            $tanggalBatas = now()->subDays($request->rentang);
+            $query->whereDate('tanggal', '>=', $tanggalBatas);
+        }
+
+        $rekap = $query->get();
+
         return view('rekap_rampasan.index', compact('rekap'));
     }
 
@@ -44,7 +68,7 @@ class RekapBarangRampasanController
         $validated = $request->validate([
             'satuan_kerja' => 'required|string',
             'jenis_barang_rampasan' => 'required|string',
-            'deskripsi_barang_rampasan' => 'nullable|string',
+            'deskripsi_barang' => 'nullable|string',
             'barang_persediaan' => 'nullable|string',
             'jumlah_total' => 'nullable|string',
             'keterangan' => 'nullable|string',
@@ -52,6 +76,8 @@ class RekapBarangRampasanController
             'bidang' => 'required|in:Pidsus,Pidum',
             'tanggal_input' => 'required|date',
         ]);
+
+        $validated['Timestamp'] = now();
 
         RekapBarangRampasan::create($validated);
 
@@ -65,18 +91,12 @@ class RekapBarangRampasanController
         return view('rekap_rampasan.edit', compact('rekap'));
     }
 
-    // Update data
     public function update(Request $request, $id)
     {
-        $rekap = RekapBarangRampasan::findOrFail($id);
-
         $validated = $request->validate([
             'satuan_kerja' => 'required|string',
-            'tanah_dan_bangunan' => 'nullable|string',
-            'hewan_dan_tanaman' => 'nullable|string',
-            'peralatan_dan_mesin' => 'nullable|string',
-            'aset_tetap_lainnya' => 'nullable|string',
-            'aset_lain_lain' => 'nullable|string',
+            'jenis_barang_rampasan' => 'required|in:Tanah dan Bangunan,Hewan dan Tanaman,Peralatan dan Mesin,Aset Tetap Lainnya,Aset Lain-lain',
+            'deskripsi_barang' => 'nullable|string',
             'barang_persediaan' => 'nullable|string',
             'jumlah_total' => 'nullable|string',
             'keterangan' => 'nullable|string',
@@ -84,11 +104,11 @@ class RekapBarangRampasanController
             'bidang' => 'required|in:Pidsus,Pidum',
         ]);
 
+        $rekap = RekapBarangRampasan::findOrFail($id);
         $rekap->update($validated);
 
         return redirect()->route('rekap-barang-rampasan.index')->with('success', 'Data berhasil diperbarui.');
     }
-
     // Hapus data
     public function destroy($id)
     {
@@ -96,5 +116,19 @@ class RekapBarangRampasanController
         $rekap->delete();
 
         return redirect()->route('rekap-barang-rampasan.index')->with('success', 'Data berhasil dihapus.');
+    }
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv|max:2048',
+        ]);
+
+        Excel::import(new RekapBarangRampasanImport(), $request->file('file'));
+        return redirect()->back()->with('success', 'Users Imported Successfully');
+    }
+
+    public function export()
+    {
+        return Excel::download(new RekapBarangRampasanExport(), 'rekap-rampasan.xlsx');
     }
 }

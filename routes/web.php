@@ -67,14 +67,24 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
     Route::get('/tunggakan/create', [TunggakanController::class, 'create'])->name('tunggakan.create');
     Route::post('/tunggakan/store', [TunggakanController::class, 'store'])->name('tunggakan.store');
     Route::get('/tunggakan/{id}/edit', [TunggakanController::class, 'edit'])->name('tunggakan.edit');
-    Route::put('/tunggakan/{id}', [TunggakanController::class, 'update'])->name('tunggakan.update');
-    Route::delete('/tunggakan/{id}', [TunggakanController::class, 'destroy'])->name('tunggakan.destroy');
-    Route::get('/tunggakan/export', [TunggakanController::class, 'export'])->name('tunggakan.export');
-    Route::post('/tunggakan/import', [TunggakanController::class, 'import'])->name('tunggakan.import');
-    Route::get('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'index'])->name('rekap-barang-rampasan.index');
+        Route::put('/tunggakan/{id}', [TunggakanController::class, 'update'])->name('tunggakan.update');
+        Route::delete('/tunggakan/{id}', [TunggakanController::class, 'destroy'])->name('tunggakan.destroy');
+        Route::get('/tunggakan/export', [TunggakanController::class, 'export'])->name('tunggakan.export');
+        Route::post('/tunggakan/import', [TunggakanController::class, 'import'])->name('tunggakan.import');
+        Route::get('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'index'])->name('rekap-barang-rampasan.index');
+
     Route::get('/rekap-barang-rampasan/create', [RekapBarangRampasanController::class, 'create'])->name('rekap-barang-rampasan.create');
     Route::post('/rekap-barang-rampasan', [RekapBarangRampasanController::class, 'store'])->name('rekap-barang-rampasan.store');
-    Route::get('/rekap-barang-rampasan/{id}/edit', [RekapBarangRampasanController::class, 'edit'])->name('rekap-barang-rampasan.edit');
-    Route::put('/rekap-barang-rampasan/{id}', [RekapBarangRampasanController::class, 'update'])->name('rekap-barang-rampasan.update');
+    Route::get('/rekap-barang-rampasan/{id}/edit', [RekapBarangRampasanController::class, 'edit'])
+    ->name('rekap-barang-rampasan.edit');
+    Route::put('/rekap-barang-rampasan/{id}', [RekapBarangRampasanController::class, 'update'])
+    ->name('rekap-barang-rampasan.update');
     Route::delete('/rekap-barang-rampasan/{id}', [RekapBarangRampasanController::class, 'destroy'])->name('rekap-barang-rampasan.destroy');
+  Route::get('/rekap-barang-rampasan/export', [RekapBarangRampasanController::class, 'export'])
+    ->name('rekap-barang-rampasan.export');Route::get('/rekap-barang-rampasan/import', [RekapBarangRampasanController::class, 'import'])
+    ->name('rekap-barang-rampasan.import');
+    Route::post('/rekap-barang-rampasan/import', [RekapBarangRampasanController::class, 'import'])
+    ->name('rekap-barang-rampasan.import.post');
+
+    
 });

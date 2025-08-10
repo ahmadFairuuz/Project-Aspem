@@ -24,9 +24,9 @@ class RekapBarangRampasan extends Model
         'tanggal_input',
     ];
 
-
+    
 
     protected $casts = [
-        'tgl_input' => 'date',
+        'tanggal_input' => 'date',
     ];
 }

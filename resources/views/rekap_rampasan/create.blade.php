@@ -52,10 +52,10 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Deskripsi Barang Rampasan</label>
-                        <textarea name="deskripsi" class="form-control">{{ old('deskripsi') }}</textarea>
-                    </div>
+<div class="mb-3">
+    <label class="form-label">Deskripsi Barang Rampasan</label>
+    <input type="text" name="deskripsi_barang" class="form-control" value="{{ old('deskripsi_barang') }}">
+</div>
 
                     <div class="mb-3">
                         <label class="form-label">Barang Persediaan</label>
