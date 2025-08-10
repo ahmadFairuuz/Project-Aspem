@@ -2,26 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RekapBarangRampasan;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use App\Models\RekapBarangRampasan;
+use Illuminate\Support\Facades\Auth;
 
-
-class RekapBarangRampasanController 
+class RekapBarangRampasanController
 {
     // Tampilkan semua data
     public function index()
     {
-        $rekap = RekapBarangRampasan::latest()->get();
+        $user = Auth::user(); // ambil user yang sedang login
+
+        if ($user->hasGlobalAccess()) {
+            // Admin bisa lihat semua data
+            $rekap = RekapBarangRampasan::orderBy('created_at', 'desc')->get();
+        } else {
+            // User biasa hanya lihat data sesuai kabupaten_id mereka
+            $rekap = RekapBarangRampasan::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->get();
+        }
         return view('rekap_rampasan.index', compact('rekap'));
     }
 
     // Tampilkan form input
     public function create()
     {
-        return view('rekap_rampasan.create');
+        $user = Auth::user();
+        if ($user->hasGlobalAccess()) {
+            $satkerUsers = User::select('id', 'satuan_kerja')->distinct()->get();
+        } else {
+            $satkerUsers = collect([$user]);
+        }
+        return view('rekap_rampasan.create', compact('satkerUsers', 'user'));
     }
 
     // Simpan data baru
@@ -37,13 +51,11 @@ class RekapBarangRampasanController
             'status' => 'required|in:Belum memiliki nilai taksir,Memiliki nilai taksir,Terjual',
             'bidang' => 'required|in:Pidsus,Pidum',
             'tanggal_input' => 'required|date',
-
         ]);
 
         RekapBarangRampasan::create($validated);
 
-        return redirect()->route('rekap-barang-rampasan.index')
-            ->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('rekap-barang-rampasan.index')->with('success', 'Data berhasil disimpan.');
     }
 
     // Tampilkan form edit
@@ -70,13 +82,11 @@ class RekapBarangRampasanController
             'keterangan' => 'nullable|string',
             'status' => 'required|in:Belum memiliki nilai taksir,Memiliki nilai taksir,Terjual',
             'bidang' => 'required|in:Pidsus,Pidum',
-            
         ]);
 
         $rekap->update($validated);
 
-        return redirect()->route('rekap-barang-rampasan.index')
-            ->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('rekap-barang-rampasan.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     // Hapus data
@@ -85,7 +95,6 @@ class RekapBarangRampasanController
         $rekap = RekapBarangRampasan::findOrFail($id);
         $rekap->delete();
 
-        return redirect()->route('rekap-barang-rampasan.index')
-            ->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('rekap-barang-rampasan.index')->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,13 +15,7 @@ return new class extends Migration
             $table->string('satuan_kerja');
 
             // Kolom enum pengganti banyak kolom
-            $table->enum('jenis_barang_rampasan', [
-                'Tanah dan Bangunan',
-                'Hewan dan Tanaman',
-                'Peralatan dan Mesin',
-                'Aset Tetap Lainnya',
-                'Aset Lain-lain'
-            ]);
+            $table->enum('jenis_barang_rampasan', ['Tanah dan Bangunan', 'Hewan dan Tanaman', 'Peralatan dan Mesin', 'Aset Tetap Lainnya', 'Aset Lain-lain']);
 
             // Kolom deskripsi/isi untuk barang rampasan tersebut
             $table->text('deskripsi')->nullable();
@@ -30,14 +23,10 @@ return new class extends Migration
             $table->string('jumlah_total')->nullable();
             $table->text('keterangan')->nullable();
 
-            $table->enum('status', [
-                'Belum memiliki nilai taksir',
-                'Memiliki nilai taksir',
-                'Terjual'
-            ])->default('Belum memiliki nilai taksir');
+            $table->enum('status', ['Belum memiliki nilai taksir', 'Memiliki nilai taksir', 'Terjual'])->default('Belum memiliki nilai taksir');
 
             $table->enum('bidang', ['Pidsus', 'Pidum'])->default('Pidsus');
-
+            $table->date('tanggal_input');
             $table->timestamps();
         });
     }

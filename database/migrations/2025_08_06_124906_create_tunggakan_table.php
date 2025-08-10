@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tunggakan', function (Blueprint $table) {
     $table->id();
     $table->string('no_putusan');
+    $table->string('satuan_kerja');
     $table->string('nama_terpidana');
     $table->string('no_register');
     $table->text('nama_barang');

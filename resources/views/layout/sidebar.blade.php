@@ -84,7 +84,7 @@
                  </button>
              </form>
          </li>
-         @if ($role !== 'super admin')
+         @if ($role === 'super admin')
              <li class="nav-item {{ request()->routeIs('akun.index') ? 'active' : '' }}">
                  <a class="nav-link" href="{{ route('akun.index') }}">
                      <i class="fas fa-fw fa-user" aria-hidden="true"></i>

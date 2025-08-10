@@ -50,7 +50,7 @@ class AspemController extends Controller
             $aspem = Aspem::orderBy('created_at', 'desc')->get();
         } else {
             // User biasa hanya lihat data sesuai kabupaten_id mereka
-            $aspem = Aspem::where('kabupaten_id', $user->kabupaten_id)->orderBy('created_at', 'desc')->get();
+            $aspem = Aspem::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->get();
         }
         if (in_array($user->role, ['kajati', 'validator'])) {
             abort(403, 'Akses ditolak.');

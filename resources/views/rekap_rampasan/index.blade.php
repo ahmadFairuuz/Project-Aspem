@@ -1,7 +1,8 @@
 @extends('layout.main')
-
+@section('title', 'Rekap Rampasan')
 @section('content')
-<div class="container">
+
+    <div class="container-fluid px-4">
     <h2 class="mb-4">Rekapitulasi Barang Rampasan</h2>
 
     @if(session('success'))
@@ -60,12 +61,13 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->satuan_kerja }}</td>
                     <td>{{ $item->jenis_barang_rampasan }}</td>
+                    <td>{{ $item->deskripsi }}</td>
                     <td>{{ $item->barang_persediaan }}</td>
                     <td>{{ $item->jumlah_total }}</td>
                     <td>{{ $item->keterangan }}</td>
                     <td>{{ $item->status }}</td>
                     <td>{{ $item->bidang }}</td>
-                    <td>{{ $item->created_at->format('d-m-Y') }}</td>
+                    <td>{{ $item->tanggal_input}}</td>
                     <td>
                         <a href="{{ route('rekap-barang-rampasan.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         <form action="{{ route('rekap-barang-rampasan.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus data ini?')">
@@ -77,7 +79,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="10" class="text-center">Data tidak tersedia.</td>
+                    <td colspan="11" class="text-center">Data tidak tersedia.</td>
                 </tr>
                 @endforelse
             </tbody>

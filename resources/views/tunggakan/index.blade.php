@@ -29,6 +29,7 @@
                     <tr>
                         <th>No</th>
                         <th>No. Putusan</th>
+                        <th>Satuan Kerja</th>
                         <th>Nama Terpidana</th>
                         <th>No. Register Perkara</th>
                         <th>Nama Barang</th>
@@ -41,6 +42,7 @@
                     <tr>
                         <td>{{ $data->firstItem() + $key }}</td>
                         <td>{{ $item->no_putusan }}</td>
+                        <td>{{ $item->satuan_kerja }}</td>
                         <td>{{ $item->nama_terpidana }}</td>
                         <td>{{ $item->no_register }}</td>
                         <td>{{ $item->nama_barang }}</td>

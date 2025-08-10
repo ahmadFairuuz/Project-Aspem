@@ -15,6 +15,7 @@ class Tunggakan extends Model
     // Field yang bisa diisi (mass assignable)
     protected $fillable = [
         'no_putusan',
+        'satuan_kerja',
         'nama_terpidana',
         'no_register',
         'nama_barang',

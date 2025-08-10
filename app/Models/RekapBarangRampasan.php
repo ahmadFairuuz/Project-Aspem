@@ -21,6 +21,7 @@ class RekapBarangRampasan extends Model
         'keterangan',
         'status', // enum: Belum memiliki nilai taksir, Memiliki nilai taksir, Terjual
         'bidang', // enum: Pidsus, Pidum
+        'tanggal_input',
     ];
 
 

@@ -5,18 +5,7 @@
 @section('content')
     <div class="container-fluid px-4">
         <h1 class="h3 mb-3 text-gray-800">Kelola Akun</h1>
-        <form action="/import" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="file" required>
-            <button class="btn btn-group" type="submit">Import</button>
-        </form>
-
-        <h1 class="h3 mb-3 text-gray-800">Export Users</h1>
-        <a href="/export">Download Excel</a>
-
         <div class="card mb-4">
-            <div class="card-header">
-            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped" id="dataTable">

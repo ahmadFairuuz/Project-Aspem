@@ -12,6 +12,7 @@ class TunggakanSeeder extends Seeder
         $data = [
             [
                 'no_putusan'     => '24/Pid.Sus/2025/PN Met',
+                'satuan_kerja'     => 'Kejaksaan Negeri Metro',
                 'nama_terpidana' => 'JHORDY ANDRIANSYAH Bin ZUNAIDI',
                 'no_register'    => 'PDM-12/MTR/Enz.2/01/2025',
                 'nama_barang'    => 'handphone model iphone 11 pro dengan nomor model MW9C2LL/A dan nomor seri C392JHLJNX6M',
@@ -19,6 +20,7 @@ class TunggakanSeeder extends Seeder
             ],
             [
                 'no_putusan'     => '71/Pid.B/2025/PN Met',
+                'satuan_kerja'     => 'Kejaksaan Negeri Pesawaran',
                 'nama_terpidana' => 'IWAN PERMANA BIN PRANOWO',
                 'no_register'    => 'PDM-6/MTR/Eku.2/03/2025',
                 'nama_barang'    => 'Handphone merk Xiaomi Warna Gold',
@@ -26,6 +28,7 @@ class TunggakanSeeder extends Seeder
             ],
             [
                 'no_putusan'     => '58/Pid.B/2025/PN Met',
+                'satuan_kerja'     => 'Kejaksaan Negeri Metro',
                 'nama_terpidana' => 'ACHYARI Bin AZIER TANJUNG',
                 'no_register'    => 'PDM-05/MTR/Eku.2/03/2025',
                 'nama_barang'    => 'mouse.',
@@ -33,6 +36,7 @@ class TunggakanSeeder extends Seeder
             ],
             [
                 'no_putusan'     => '58/Pid.B/2025/PN Met',
+                'satuan_kerja'     => 'Kejaksaan Negeri Pesawaran',
                 'nama_terpidana' => 'ACHYARI Bin AZIER TANJUNG',
                 'no_register'    => 'PDM-05/MTR/Eku.2/03/2025',
                 'nama_barang'    => 'keyboard.',
@@ -40,6 +44,7 @@ class TunggakanSeeder extends Seeder
             ],
             [
                 'no_putusan'     => '58/Pid.B/2025/PN Met',
+                'satuan_kerja'     => 'Kejaksaan Negeri Pringsewu',
                 'nama_terpidana' => 'ACHYARI Bin AZIER TANJUNG',
                 'no_register'    => 'PDM-05/MTR/Eku.2/03/2025',
                 'nama_barang'    => 'cpu.',
@@ -47,6 +52,7 @@ class TunggakanSeeder extends Seeder
             ],
             [
                 'no_putusan'     => '58/Pid.B/2025/PN Met',
+                'satuan_kerja'     => 'Kejaksaan Negeri Pringsewu',
                 'nama_terpidana' => 'ACHYARI Bin AZIER TANJUNG',
                 'no_register'    => 'PDM-05/MTR/Eku.2/03/2025',
                 'nama_barang'    => 'monitor komputer.',

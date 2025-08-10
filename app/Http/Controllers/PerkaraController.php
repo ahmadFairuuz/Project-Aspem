@@ -23,7 +23,7 @@ class PerkaraController extends Controller
             $perkara = Perkara::orderBy('created_at', 'desc')->get();
         } else {
             // User biasa hanya lihat data sesuai kabupaten_id mereka
-            $perkara = Perkara::where('kabupaten_id', $user->kabupaten_id)->orderBy('created_at', 'desc')->get();
+            $perkara = Perkara::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->get();
         }
 
         return view('perkara.index', compact('perkara'));

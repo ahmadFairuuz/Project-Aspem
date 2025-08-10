@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tunggakan;
+use Illuminate\Http\Request;
 use App\Exports\TunggakanExport;
 use App\Imports\TunggakanImport;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TunggakanController
 {
     public function index()
     {
-        $data = Tunggakan::paginate(10);
+        $user = Auth::user();
+        if ($user->hasGlobalAccess()) {
+            // Admin bisa lihat semua data
+            $data = Tunggakan::orderBy('created_at', 'desc')->paginate(10);
+        } else {
+            // User biasa hanya lihat data sesuai kabupaten_id mereka
+            $data = Tunggakan::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->paginate(10);
+        }
+
         return view('tunggakan.index', compact('data'));
     }
 
