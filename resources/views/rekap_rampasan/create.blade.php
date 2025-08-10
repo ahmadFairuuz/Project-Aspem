@@ -42,7 +42,8 @@
 
 <div class="mb-3">
     <label class="form-label">Deskripsi Barang Rampasan</label>
-    <textarea name="deskripsi" class="form-control">{{ old('deskripsi') }}</textarea>
+    <!-- <textarea name="deskripsi_barang" class="form-control">{{ old('deskripsi_barang') }}</textarea> -->
+    <input type="text" name="deskripsi_barang" class="form-control" value="{{ old('deskripsi_barang') }}">
 </div>
 
 <div class="mb-3">
@@ -78,10 +79,10 @@
             </select>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label class="form-label">Tanggal Input</label>
-            <input type="date" name="tanggal_input" class="form-control" value="{{ old('tanggal_input') }}" required>
-        </div>
+            <input type="date" name="created_at" class="form-control" value="{{ old('created_at') }}" required>
+        </div> -->
 
         <button type="submit" class="btn btn-success">Simpan</button>
         <a href="{{ route('rekap-barang-rampasan.index') }}" class="btn btn-secondary">Kembali</a>

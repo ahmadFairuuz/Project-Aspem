@@ -1,32 +1,38 @@
 <?php
 
 namespace App\Exports;
-use App\Models\Tunggakan;
+
+use App\Models\RekapBarangRampasan;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-    
-class TunggakanExport implements FromCollection, WithHeadings
+class RekapBarangRampasanExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Tunggakan::select(
-            'no_putusan',
-        'nama_terpidana',
-        'no_register',
-        'nama_barang',
-        'jumlah',
+        return RekapBarangRampasan::select(
+            'satuan_kerja',
+            'jenis_barang_rampasan',
+            'barang_persediaan',
+            'deskripsi_barang',
+            'jumlah_total',
+            'keterangan',
+            'status',
+            'bidang'
         )->get();
     }
 
     public function headings(): array
     {
         return [
-            'no_putusan',
-        'nama_terpidana',
-        'no_register',
-        'nama_barang',
-        'jumlah',
+            'satuan_kerja',
+            'jenis_barang_rampasan',
+            'barang_persediaan',
+            'deskripsi_barang',
+            'jumlah_total',
+            'keterangan',
+            'status',
+            'bidang'
         ];
     }
 }

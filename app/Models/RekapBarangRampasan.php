@@ -21,11 +21,13 @@ class RekapBarangRampasan extends Model
         'keterangan',
         'status', // enum: Belum memiliki nilai taksir, Memiliki nilai taksir, Terjual
         'bidang', // enum: Pidsus, Pidum
+        'Timestamp',
+       
     ];
 
-
+    
 
     protected $casts = [
-        'tgl_input' => 'date',
+        'tanggal_input' => 'date',
     ];
 }
