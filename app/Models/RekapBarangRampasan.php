@@ -10,23 +10,17 @@ class RekapBarangRampasan extends Model
     use HasFactory;
 
     protected $table = 'rekap_barang_rampasan';
-    protected $dates = ['tanggal_input'];
 
     protected $fillable = [
         'satuan_kerja',
         'jenis_barang_rampasan',
-        'barang_persediaan',
         'deskripsi_barang',
         'jumlah_total',
         'keterangan',
-        'status', // enum: Belum memiliki nilai taksir, Memiliki nilai taksir, Terjual
-        'bidang', // enum: Pidsus, Pidum
+        'kendala',
+        'solusi',
+        'status',
+        'bidang',
         'tanggal_input',
-    ];
-
-    
-
-    protected $casts = [
-        'tanggal_input' => 'date',
     ];
 }

@@ -42,7 +42,7 @@ class RekapBarangRampasanController
         // Filter Rentang Waktu (dalam hari)
         if ($request->filled('rentang')) {
             $tanggalBatas = now()->subDays($request->rentang);
-            $query->whereDate('tanggal', '>=', $tanggalBatas);
+            $query->whereDate('tanggal_input', '>=', $tanggalBatas);
         }
 
         $rekap = $query->get();
@@ -68,10 +68,11 @@ class RekapBarangRampasanController
         $validated = $request->validate([
             'satuan_kerja' => 'required|string',
             'jenis_barang_rampasan' => 'required|string',
-            'deskripsi_barang' => 'nullable|string',
-            'barang_persediaan' => 'nullable|string',
-            'jumlah_total' => 'nullable|string',
-            'keterangan' => 'nullable|string',
+            'deskripsi_barang' => 'required|string',
+            'jumlah_total' => 'required|string',
+            'keterangan' => 'required|string',
+            'kendala' => 'nullable|string',
+            'solusi' => 'nullable|string',
             'status' => 'required|in:Belum memiliki nilai taksir,Memiliki nilai taksir,Terjual',
             'bidang' => 'required|in:Pidsus,Pidum',
             'tanggal_input' => 'required|date',
@@ -94,15 +95,17 @@ class RekapBarangRampasanController
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'satuan_kerja' => 'required|string',
-            'jenis_barang_rampasan' => 'required|in:Tanah dan Bangunan,Hewan dan Tanaman,Peralatan dan Mesin,Aset Tetap Lainnya,Aset Lain-lain',
-            'deskripsi_barang' => 'nullable|string',
-            'barang_persediaan' => 'nullable|string',
-            'jumlah_total' => 'nullable|string',
-            'keterangan' => 'nullable|string',
-            'status' => 'required|in:Belum memiliki nilai taksir,Memiliki nilai taksir,Terjual',
-            'bidang' => 'required|in:Pidsus,Pidum',
-        ]);
+        'satuan_kerja' => 'required|string',
+        'jenis_barang_rampasan' => 'required|string',
+        'deskripsi_barang' => 'required|string',
+        'jumlah_total' => 'required|string',
+        'keterangan' => 'required|string',
+        'kendala' => 'nullable|string',
+        'solusi' => 'nullable|string',
+        'status' => 'required|in:Belum memiliki nilai taksir,Memiliki nilai taksir,Terjual',
+        'bidang' => 'required|in:Pidsus,Pidum',
+        'tanggal_input' => 'required|date',
+    ]);
 
         $rekap = RekapBarangRampasan::findOrFail($id);
         $rekap->update($validated);

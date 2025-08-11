@@ -13,19 +13,14 @@ return new class extends Migration {
         Schema::create('rekap_barang_rampasan', function (Blueprint $table) {
             $table->id();
             $table->string('satuan_kerja');
-
-            // Kolom enum pengganti banyak kolom
             $table->enum('jenis_barang_rampasan', ['Tanah dan Bangunan', 'Hewan dan Tanaman', 'Peralatan dan Mesin', 'Aset Tetap Lainnya', 'Aset Lain-lain']);
-
-            // Kolom deskripsi/isi untuk barang rampasan tersebut
-            $table->text('deskripsi_barang')->nullable();
-            $table->text('barang_persediaan')->nullable();
-            $table->string('jumlah_total')->nullable();
-            $table->text('keterangan')->nullable();
-
+            $table->text('deskripsi_barang');
+            $table->string('jumlah_total');
+            $table->text('keterangan');
+            $table->string('kendala')->nullable();
+            $table->string('solusi')->nullable();
             $table->enum('status', ['Belum memiliki nilai taksir', 'Memiliki nilai taksir', 'Terjual'])->default('Belum memiliki nilai taksir');
-
-            $table->enum('bidang', ['Pidsus', 'Pidum'])->default('Pidsus');
+            $table->enum('bidang', ['Pidsus', 'Pidum'])->default('Pidum');
             $table->date('tanggal_input');
             $table->timestamps();
         });
@@ -37,6 +32,5 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('rekap_barang_rampasan');
-         $table->dropTimestamps();
     }
 };

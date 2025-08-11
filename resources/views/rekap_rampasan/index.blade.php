@@ -61,12 +61,13 @@
                     <th>Satuan Kerja</th>
                     <th>Jenis Barang Rampasan</th>
                     <th>Deskripsi Barang Rampasan</th>
-                    <th>Barang Persediaan</th>
                     <th>Jumlah Total</th>
                     <th>Keterangan</th>
+                    <th>Kendala</th>
+                    <th>Solusi</th>
                     <th>Status</th>
                     <th>Bidang</th>
-                    <th>Timestamp</th>
+                    <th>Tanggal Input</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -77,9 +78,10 @@
                     <td>{{ $item->satuan_kerja }}</td>
                     <td>{{ $item->jenis_barang_rampasan }}</td>
                     <td>{{ $item->deskripsi_barang }}</td>
-                    <td>{{ $item->barang_persediaan }}</td>
                     <td>{{ $item->jumlah_total }}</td>
                     <td>{{ $item->keterangan }}</td>
+                    <td>{{ $item->kendala }}</td>
+                    <td>{{ $item->solusi }}</td>
                     <td>{{ $item->status }}</td>
                     <td>{{ $item->bidang }}</td>
                     <td>{{ $item->tanggal_input}}</td>

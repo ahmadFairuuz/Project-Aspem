@@ -2,9 +2,11 @@
 
 namespace App\Exports;
 
+
 use App\Models\RekapBarangRampasan;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Carbon\Carbon;
 
 class RekapBarangRampasanExport implements FromCollection, WithHeadings
 {
@@ -12,6 +14,7 @@ class RekapBarangRampasanExport implements FromCollection, WithHeadings
     {
         return RekapBarangRampasan::select(
             'satuan_kerja',
+            'tanggal_input',
             'jenis_barang_rampasan',
             'deskripsi_barang',
             'barang_persediaan',
@@ -19,14 +22,15 @@ class RekapBarangRampasanExport implements FromCollection, WithHeadings
             'keterangan',
             'status',
             'bidang',
-            'Timestamp'
+            
         )->get();
-    }
+}
 
     public function headings(): array
     {
         return [
             'Satuan Kerja',
+            'Tanggal Input',
             'Jenis Barang Rampasan',
             'Deskripsi Barang',
             'Barang Persediaan',
@@ -34,7 +38,7 @@ class RekapBarangRampasanExport implements FromCollection, WithHeadings
             'Keterangan',
             'Status',
             'Bidang',
-            'Timestamp'
+            
         ];
     }
 }
