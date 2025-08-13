@@ -12,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        /// Fix public path untuk InfinityFree
+        $this->app->bind('path.public', function() {
+            return base_path('../');
+        });
     }
 
     /**
@@ -21,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+        // Force HTTPS jika diperlukan
+        if (env('FORCE_HTTPS', false)) {
+            \URL::forceScheme('https');
+        }
     }
 }

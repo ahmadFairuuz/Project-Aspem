@@ -13,6 +13,15 @@ use App\Http\Controllers\BarangRampasanController;
 use App\Http\Controllers\RekapBarangRampasanController;
 use App\Http\Controllers\DashboardController;
 
+Route::get('/test-db', function () {
+    try {
+        \DB::connection()->getPdo();
+        return "✅ Database connection successful!";
+    } catch (\Exception $e) {
+        return "❌ Database failed: " . $e->getMessage();
+    }
+});
+
 Route::get('/', [AspemController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AspemController::class, 'login'])->name('login');
 

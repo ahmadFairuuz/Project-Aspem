@@ -163,46 +163,59 @@
         </div> --}}
 
         <div class="row  ">
-                <div class="col-12">
-                    <div class="card shadow border-left-warning">
-                        <div class="card-header bg-warning text-white">
-                            <h6 class="m-0 font-weight-bold">Makna Lambang BPA</h6>
-                        </div>
-                        <div class="card-body text-dark">
-                            <div class="row align-items-center">
-                                <!-- Kolom Kiri: Gambar -->
-                                <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                    <img src="{{ asset('image/logo_bpa.png') }}" alt="Logo BPA" class="img-fluid"
-                                         style="max-height: 400px; object-fit: contain;" >
-                                </div>
+            <div class="col-12">
+                <div class="card shadow border-left-warning">
+                    <div class="card-header bg-warning text-white">
+                        <h6 class="m-0 font-weight-bold">Makna Lambang BPA</h6>
+                    </div>
+                    <div class="card-body text-dark">
+                        <div class="row align-items-center">
+                            <!-- Kolom Kiri: Gambar -->
+                            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                <img src="{{ asset('image/logo_bpa.png') }}" alt="Logo BPA" class="img-fluid"
+                                    style="max-height: 400px; object-fit: contain;">
+                            </div>
 
-                                <!-- Kolom Kanan: Teks Deskripsi -->
-                                <div class="col-md-8">
-                                    <p><strong>Tiga Bintang:</strong> Trapsila Adhyaksa adalah pedoman nilai-nilai luhur
-                                        yang menjadi landasan jiwa dalam menjalankan tugas dan fungsi jajaran BPA.</p>
-                                    <p><strong>Timbangan:</strong> Melambangkan keseimbangan dan keadilan yang berarti
-                                        Pemulihan Aset yang adil dan seimbang.</p>
-                                    <p><strong>Batang Timbangan yang Stabil:</strong> Melambangkan kestabilan dan keamanan.
-                                    </p>
-                                    <p><strong>Dua Sisi Timbangan Yang Seimbang:</strong> Melambangkan keseimbangan antara
-                                        kepentingan dan kebutuhan.</p>
-                                    <p><strong>Pedang Kearah Atas:</strong> Melambangkan kekuatan, keberanian, keadilan, dan
-                                        perlindungan.</p>
-                                    <p><strong>Arti Kata:</strong><br>
-                                        <em>Arthasampadya (अर्थसम्पद्य)</em> – Aset yang harus dipulihkan atau diperoleh
-                                        kembali.
-                                    </p>
-                                    <p><strong>Warna:</strong><br>
-                                        <strong>Emas:</strong> Kemewahan, kemakmuran, kejayaan.<br>
-                                        <strong>Hitam:</strong> Melambangkan aset yang dikelola BPA.
-                                    </p>
-                                </div>
+                            <!-- Kolom Kanan: Teks Deskripsi -->
+                            <div class="col-md-8">
+                                <p><strong>Tiga Bintang:</strong> Trapsila Adhyaksa adalah pedoman nilai-nilai luhur
+                                    yang menjadi landasan jiwa dalam menjalankan tugas dan fungsi jajaran BPA.</p>
+                                <p><strong>Timbangan:</strong> Melambangkan keseimbangan dan keadilan yang berarti
+                                    Pemulihan Aset yang adil dan seimbang.</p>
+                                <p><strong>Batang Timbangan yang Stabil:</strong> Melambangkan kestabilan dan keamanan.
+                                </p>
+                                <p><strong>Dua Sisi Timbangan Yang Seimbang:</strong> Melambangkan keseimbangan antara
+                                    kepentingan dan kebutuhan.</p>
+                                <p><strong>Pedang Kearah Atas:</strong> Melambangkan kekuatan, keberanian, keadilan, dan
+                                    perlindungan.</p>
+                                <p><strong>Arti Kata:</strong><br>
+                                    <em>Arthasampadya (अर्थसम्पद्य)</em> – Aset yang harus dipulihkan atau diperoleh
+                                    kembali.
+                                </p>
+                                <p><strong>Warna:</strong><br>
+                                    <strong>Emas:</strong> Kemewahan, kemakmuran, kejayaan.<br>
+                                    <strong>Hitam:</strong> Melambangkan aset yang dikelola BPA.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="row  mt-5">
+            <div class="col-12">
+                <div class="card shadow border-left-danger">
+                    <div class="card-header bg-danger text-white">
+                        <h6 class="m-0 font-weight-bold">Struktur Pemulihan Aset Kejati Lampung</h6>
+                    </div>
+                    <div class="card-body text-dark ">
+                            <img src="{{ asset('image/Struktur.png') }}" alt="Struktur BPA" class="img-fluid w-100 px-5 "
+                               >
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row  mt-5 g-4">
 
@@ -210,8 +223,8 @@
             <div class="col-md-6 mb-4">
                 <div class="card shadow h-100">
                     <div class="card-header bg-primary text-white">
-                            <h5 class="m-0 font-weight-bold">ASISTEN PEMULIHAN ASET</h5>
-                        </div>
+                        <h5 class="m-0 font-weight-bold">ASISTEN PEMULIHAN ASET</h5>
+                    </div>
                     <div class="card-body">
                         <p><strong>Tugas Pokok:</strong><br>
                             Membantu Kepala Badan Pemulihan Aset dalam perumusan kebijakan dan pelaksanaan teknis pemulihan
@@ -232,9 +245,10 @@
             <div class="col-md-6 mb-4">
                 <div class="card shadow h-100">
                     <div class="card-header bg-primary text-white">
-                            <h6 class="m-0 font-weight-bold">KASUBID PENELURUSAN DAN PERAMPASAN ASET</h6>
-                        </div>
-                    <div class="card-body"> <p><strong>Tugas Pokok:</strong><br>
+                        <h6 class="m-0 font-weight-bold">KASUBID PENELURUSAN DAN PERAMPASAN ASET</h6>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Tugas Pokok:</strong><br>
                             Melaksanakan penelusuran dan perampasan aset hasil tindak pidana sesuai ketentuan hukum.
                         </p>
                         <p>📌 <strong>Fungsi:</strong></p>
@@ -251,9 +265,9 @@
             <!-- 3. Kasubid Penyelesaian Aset -->
             <div class="col-md-6 mb-4">
                 <div class="card shadow h-100">
-                     <div class="card-header bg-primary text-white">
-                            <h6 class="m-0 font-weight-bold">KASUBID PENYELESAIAN ASET</h6>
-                        </div>
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="m-0 font-weight-bold">KASUBID PENYELESAIAN ASET</h6>
+                    </div>
                     <div class="card-body">
                         <p><strong>Tugas Pokok:</strong><br>
                             Menyelesaikan status hukum dan administratif aset yang telah dirampas atau disita.
@@ -272,10 +286,10 @@
             <!-- 4. Kasubid Manajemen Aset -->
             <div class="col-md-6 mb-4">
                 <div class="card shadow h-100">
-                    
-                     <div class="card-header bg-primary text-white">
-                            <h6 class="m-0 font-weight-bold">KASUBID MANAJEMEN ASET</h6>
-                        </div>
+
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="m-0 font-weight-bold">KASUBID MANAJEMEN ASET</h6>
+                    </div>
                     <div class="card-body">
                         <p><strong>Tugas Pokok:</strong><br>
                             Mengelola aset yang sudah dirampas/disita secara administratif dan fisik.
