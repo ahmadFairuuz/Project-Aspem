@@ -24,7 +24,8 @@ class PNBPExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'satuan_kerja',
+            'id',
+        'satuan_kerja',
         'lelang',
         'uang',
         'uang_pengganti',

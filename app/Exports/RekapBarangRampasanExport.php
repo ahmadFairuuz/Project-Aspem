@@ -14,14 +14,15 @@ class RekapBarangRampasanExport implements FromCollection, WithHeadings
     {
         return RekapBarangRampasan::select(
             'satuan_kerja',
-            'tanggal_input',
             'jenis_barang_rampasan',
             'deskripsi_barang',
-            'barang_persediaan',
             'jumlah_total',
             'keterangan',
+            'kendala',
+            'solusi',
             'status',
             'bidang',
+            'tanggal_input',
             
         )->get();
 }
@@ -30,14 +31,15 @@ class RekapBarangRampasanExport implements FromCollection, WithHeadings
     {
         return [
             'Satuan Kerja',
-            'Tanggal Input',
             'Jenis Barang Rampasan',
             'Deskripsi Barang',
-            'Barang Persediaan',
             'Jumlah Total',
             'Keterangan',
+            'Kendala',
+            'Solusi',
             'Status',
             'Bidang',
+            'Tanggal Input',
             
         ];
     }
