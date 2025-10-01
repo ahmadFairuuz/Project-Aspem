@@ -1,30 +1,18 @@
 <?php
 
-use Illuminate\Routing\RouteGroup;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AkunController;
-use App\Http\Controllers\PNBPController;
 use App\Http\Controllers\AspemController;
+use App\Http\Controllers\BarangRampasanController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\PerkaraController;
-use App\Http\Middleware\PreventBackHistory;
-use App\Http\Controllers\TunggakanController;
-use App\Http\Controllers\BarangRampasanController;
+use App\Http\Controllers\PNBPController;
 use App\Http\Controllers\RekapBarangRampasanController;
-use App\Http\Controllers\DashboardController;
-
-Route::get('/test-db', function () {
-    try {
-        \DB::connection()->getPdo();
-        return "✅ Database connection successful!";
-    } catch (\Exception $e) {
-        return "❌ Database failed: " . $e->getMessage();
-    }
-});
+use App\Http\Controllers\TunggakanController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AspemController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AspemController::class, 'login'])->name('login');
-
 Route::get('/login', [AspemController::class, 'showLoginForm'])->name('login.form');
 Route::post('/logout', [AspemController::class, 'logout'])->name('logout');
 
@@ -47,15 +35,19 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     // Route::put('/barangrampasan/update-bidang/{id}', [BarangRampasanController::class, 'updateBidang'])->name('barangrampasan.updateBidang');
 
     Route::get('/perkara', [PerkaraController::class, 'index'])->name('perkara.index');
-    Route::get('/perkara/create', [PerkaraController::class, 'create'])->name('perkara.create');
-    Route::post('/perkara/store', [PerkaraController::class, 'store'])->name('perkara.store');
     Route::get('/perkara/export', [PerkaraController::class, 'export'])->name('perkara.export');
-    Route::post('/perkara/import', [PerkaraController::class, 'import'])->name('perkara.import');
-    route::get('/perkara/edit{id}', [PerkaraController::class, 'edit'])->name('perkara.edit');
-    route::put('/perkara/update{id}', [PerkaraController::class, 'update'])->name('perkara.update');
-    Route::delete('/perkara/delete{id}', [PerkaraController::class, 'destroy'])->name('perkara.destroy');
-    Route::get('/perkara/validasi', [PerkaraController::class, 'validasi'])->name('perkara.validasi');
-    Route::patch('/perkara/{id}/status', [PerkaraController::class, 'updateStatus'])->name('perkara.updateStatus');
+    //KAJATI TIDAK BISA AKSES
+    Route::get('/perkara/validasi', [PerkaraController::class, 'validasi'])->name('perkara.validasi')->middleware('role-deny:kajati');
+    Route::patch('/perkara/{id}/status', [PerkaraController::class, 'updateStatus'])->name('perkara.updateStatus')->middleware('role-deny:kajati');
+    //VALIDATOR & KAJATI TDK BISA AKSES
+    Route::middleware('role-deny:validator,kajati')->group(function () {
+        Route::get('/perkara/create', [PerkaraController::class, 'create'])->name('perkara.create');
+        Route::post('/perkara/import', [PerkaraController::class, 'import'])->name('perkara.import');
+        route::get('/perkara/edit{id}', [PerkaraController::class, 'edit'])->name('perkara.edit');
+        route::put('/perkara/update{id}', [PerkaraController::class, 'update'])->name('perkara.update');
+        Route::delete('/perkara/delete{id}', [PerkaraController::class, 'destroy'])->name('perkara.destroy');
+        Route::post('/perkara/store', [PerkaraController::class, 'store'])->name('perkara.store');
+    });
 
     Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
     Route::get('/akun/edit{id}', [AkunController::class, 'edit'])->name('akun.edit');

@@ -36,16 +36,6 @@ class userSeeder extends Seeder
             'kabupaten_id' => 16,
         ],
         [
-            'name' => 'aspem',
-            'email' => 'aspem@example.com',
-            'satuan_kerja' => 'Kejaksaan Tinggi Lampung',
-            'password' => Hash::make('aspemLampung'),
-            'created_at'       => now(),
-            'updated_at'       => now(),
-            'role' => 'aspem',
-            'kabupaten_id' => 16,
-        ],
-        [
             'name' => 'maker-pringsewu',
             'email' => 'pringsewu@example.com',
             'satuan_kerja' => 'Kejaksaan Negeri Pringsewu',

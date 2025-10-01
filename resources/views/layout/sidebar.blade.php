@@ -31,7 +31,7 @@
                  <i class="fas fa-fw fa-regular fa-list-ol" aria-hidden="true"></i>
                  <span>Daftar Perkara</span></a>
          </li>
-         @if ($role !== 'kajati')
+         @if ($role !== 'kajati' && $role !== 'validator')
              <li class="nav-item {{ request()->routeIs('perkara.create') ? 'active' : '' }}">
                  <a class="nav-link" href="{{ route('perkara.create') }}">
                      <i class="fas fa-fw fa-plus" aria-hidden="true"></i>

@@ -40,6 +40,6 @@ class User extends Authenticatable
     }
     public function hasGlobalAccess():bool  
     {
-        return in_array($this->name, ['admin aspem', 'kajati', 'aspem']);
+        return in_array($this->role, ['superadmin', 'kajati']);
     }
 }

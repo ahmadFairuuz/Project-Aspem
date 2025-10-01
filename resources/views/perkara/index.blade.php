@@ -11,18 +11,22 @@
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
+                    @if (Auth::user()->role === 'user')
                     <a href="{{ route('perkara.create') }}" class="btn  btn-primary">Tambah Perkara</a>
-                    @if (Auth::user()->role != 'user')
+                    @endif
+                    @if (!in_array(Auth::user()->role, ['user', 'kajati']))
                         <a href="{{ route('perkara.validasi') }}" class="btn btn-primary">Validasi</a>
                     @endif
                 </div>
                 <div>
+                    @if (Auth::user()->role === 'user')
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importModal">
                         <i class="fas fa-file-import mr-1"></i>Import
-
                     </button>
+                    @endif
                     <a href="{{ route('perkara.export') }}" class="btn btn-success"><i
                             class="fas fa-file-export mr-1"></i>Eksport</a>
+                           
                 </div>
             </div>
 
