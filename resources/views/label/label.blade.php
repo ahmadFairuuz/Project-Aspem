@@ -8,9 +8,9 @@
 
         {{-- SECTION: Card tabel data --}}
         <div class="card mb-4">
-            <div class="card-header">
+            {{-- <div class="card-header">
                 <a href="{{ route('label.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
-            </div>
+            </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="dataTable">
@@ -30,7 +30,7 @@
 
                     {{-- SECTION: Isi tabel --}}
                     <tbody>
-                        @foreach ($aspem as $item)
+                        @foreach ($label as $item)
                             <tr>
                                 
                                 <td>{{ $loop->iteration }}</td>

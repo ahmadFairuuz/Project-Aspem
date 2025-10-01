@@ -5,14 +5,14 @@
     <div class="container-fluid px-4">
         <h1 class="h3 mb-0 text-gray-800">Label Barang Bukti</h1>
         <ol class="breadcrumb my-3">
-            <li class="breadcrumb-item"><a href="{{ route('label.index') }}">Aspem</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('label.index') }}"><Label></Label></a></li>
             <li class="breadcrumb-item active">Edit</li>
         </ol>
 
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-edit me-1"></i>
-                Form Edit Data Aspem
+                Form Edit Data Label
             </div>
             <div class="card-body">
                 <form action="{{ route('label.update', $id->id) }}" method="POST">

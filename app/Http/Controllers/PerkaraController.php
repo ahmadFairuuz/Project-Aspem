@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Exports\PerkaraExport;
 use App\Imports\PerkaraImport;
 use App\Models\BarangRampasan;
+use App\Models\Label;
 use App\Models\Perkara;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -90,6 +91,14 @@ class PerkaraController extends Controller
             'barang_bukti'     => $perkara->barang_bukti,
             'tgl_cetak'        => now(),
             'status'           => 'PENGEMBALIAN',
+        ]);
+
+        Label::create([
+            'register_perkara' => $perkara->register_perkara,
+            'satuan_kerja'     => $perkara->satuan_kerja,
+            'barang_bukti'     => $perkara->barang_bukti,
+            'tanggal_barbuk'   => $perkara->tanggal_input,
+            'keterangan'       => $perkara->keterangan_barang_bukti,
         ]);
 
         return redirect()->route('perkara.index')->with('success', 'Data perkara berhasil ditambahkan.');

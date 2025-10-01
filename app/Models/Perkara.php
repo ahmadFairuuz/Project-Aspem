@@ -29,5 +29,8 @@ public function barangRampasan()
 {
     return $this->hasMany(BarangRampasan::class);
 }
-
+public function label()
+{
+    return $this->hasMany(Label::class);
+}
 }
