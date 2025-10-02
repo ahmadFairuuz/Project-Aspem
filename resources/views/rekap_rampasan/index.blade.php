@@ -10,13 +10,14 @@
         <div>
             <h5 class="mb-0">Tabel Rekap Barang Rampasan</h5>
         </div>
-        <div>
+        <div>@if (in_array(Auth::user()->role, ['user', 'admin']))
             <a href="{{ route('rekap-barang-rampasan.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus mr-1"></i>Tambah Data
             </a>
             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importModal">
                 <i class="fas fa-file-import mr-1"></i>Import
             </button>
+            @endif
             <a href="{{ route('rekap-barang-rampasan.export', request()->query()) }}" class="btn btn-success">
                 <i class="fas fa-file-export mr-1"></i>Export
             </a>
@@ -68,7 +69,9 @@
                     <th>Status</th>
                     <th>Bidang</th>
                     <th>Tanggal Input</th>
+                    @if (in_array(Auth::user()->role, ['user', 'admin']))
                     <th>Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -85,6 +88,7 @@
                     <td>{{ $item->status }}</td>
                     <td>{{ $item->bidang }}</td>
                     <td>{{ $item->tanggal_input}}</td>
+                    @if (in_array(Auth::user()->role, ['user', 'admin']))
                     <td>
                         <a href="{{ route('rekap-barang-rampasan.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         <form action="{{ route('rekap-barang-rampasan.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus data ini?')">
@@ -93,6 +97,7 @@
                             <button class="btn btn-sm btn-danger">Hapus</button>
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @empty
                 <tr>

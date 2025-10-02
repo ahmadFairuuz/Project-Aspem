@@ -5,7 +5,9 @@
     {{-- SECTION: Header halaman --}}
     <div class="container-fluid px-4">
         <h1 class="h3 mb-3 text-gray-800">PNBP (Penerimaan Negara Bukan Pajak)</h1>
-        <a href="{{ route('pnbp.create') }}" class="btn  btn-success mb-3">Tambah PNBP</a>
+        @if (in_array(Auth::user()->role, ['user', 'superadmin']))
+            <a href="{{ route('pnbp.create') }}" class="btn  btn-success mb-3">Tambah PNBP</a>
+        @endif
         <button class="btn btn-success mb-3" data-toggle="modal" data-target="#exportModal"><i
                 class="fas fa-file-export mr-1"></i>Export</button>
 
@@ -38,7 +40,9 @@
                                 <th>Persentase</th>
                                 <th>Keterangan</th>
                                 <th>Periode Bulan</th>
+                                @if (in_array(Auth::user()->role, ['user', 'admin']))
                                 <th width="180px">Aksi</th>
+                                @endif
                             </tr>
                         </thead>
 
@@ -66,11 +70,12 @@
 
                                     <td>{{ $item->keterangan }}</td>
                                     <td>{{ $item->periode_bulan }}</td>
+                                    @if (in_array(Auth::user()->role, ['user', 'admin']))
                                     <td>
-                                        <a href="{{ route('pnbp.index', $item->id) }}"
+                                        <a href="{{ route('pnbp.edit', $item->id) }}"
                                             class="btn btn-sm btn-warning">Edit</a>
 
-                                        <form action="{{ route('pnbp.index', $item->id) }}" method="POST"
+                                        <form action="{{ route('pnbp.destroy', $item->id) }}" method="POST"
                                             style="display:inline;"
                                             onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                             @csrf
@@ -78,6 +83,7 @@
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

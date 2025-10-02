@@ -10,12 +10,14 @@
                 <h5 class="mb-0">Tabel Data Tunggakan</h5>
             </div>
             <div>
+               @if (in_array(Auth::user()->role, ['user', 'admin']))
                 <a href="{{ route('tunggakan.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus mr-1"></i>Tambah Data
                 </a>
                 <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importModal">
                     <i class="fas fa-file-import mr-1"></i>Import
                 </button>
+                @endif
                 <a href="{{ route('tunggakan.export') }}" class="btn btn-success">
                     <i class="fas fa-file-export mr-1"></i>Export
                 </a>
@@ -34,7 +36,9 @@
                         <th>No. Register Perkara</th>
                         <th>Nama Barang</th>
                         <th>Jumlah</th>
+                        @if (in_array(Auth::user()->role, ['user', 'admin']))
                         <th>Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +51,7 @@
                         <td>{{ $item->no_register }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>{{ $item->jumlah }}</td>
+                        @if (in_array(Auth::user()->role, ['user', 'admin']))
                         <td>
                             <a href="{{ route('tunggakan.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('tunggakan.destroy', $item->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus?')">
@@ -55,6 +60,7 @@
                                 <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

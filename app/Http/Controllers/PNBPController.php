@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
+
+use App\Exports\PNBPExport;
 use App\Models\PNBP;
 use App\Models\User;
-use App\Exports\PNBPExport;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PNBPController extends Controller
@@ -23,7 +23,7 @@ class PNBPController extends Controller
         $query = PNBP::where('periode_bulan', $bulan);
 
         // Jika bukan admin/global access, filter berdasarkan kabupaten user
-        if (!$user->hasGlobalAccess()) {
+        if (! $user->hasGlobalAccess()) {
             $query->where('satuan_kerja', $user->satuan_kerja);
         }
 
@@ -37,33 +37,33 @@ class PNBPController extends Controller
     }
 
     public function create()
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
-    if ($user->hasGlobalAccess()) {
-        $satkerUsers = User::select('id', 'satuan_kerja')->distinct()->get();
-    } else {
-        $satkerUsers = collect([$user]);
+        if ($user->hasGlobalAccess()) {
+            $satkerUsers = User::select('id', 'satuan_kerja')->distinct()->get();
+        } else {
+            $satkerUsers = collect([$user]);
+        }
+
+        $kabupaten = DB::table('kabupaten')->get();
+
+        return view('pnbp.create', compact('kabupaten', 'satkerUsers', 'user'));
     }
-
-    $kabupaten = DB::table('kabupaten')->get();
-
-    return view('pnbp.create', compact('kabupaten', 'satkerUsers', 'user'));
-}
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'satuan_kerja' => 'required',
-            'lelang' => 'nullable|numeric',
-            'uang' => 'nullable|numeric',
-            'uang_pengganti' => 'nullable|numeric',
+            'satuan_kerja'       => 'required',
+            'lelang'             => 'nullable|numeric',
+            'uang'               => 'nullable|numeric',
+            'uang_pengganti'     => 'nullable|numeric',
             'penjualan_langsung' => 'nullable|numeric',
-            'total' => 'nullable|numeric',
-            'realisasi_pnbp' => 'nullable|numeric',
-            'target_pnbp' => 'nullable|numeric',
-            'keterangan' => 'nullable',
-            'periode_bulan' => 'required',
+            'total'              => 'nullable|numeric',
+            'realisasi_pnbp'     => 'nullable|numeric',
+            'target_pnbp'        => 'nullable|numeric',
+            'keterangan'         => 'nullable',
+            'periode_bulan'      => 'required',
         ]);
 
         $persentase = 0;
@@ -71,23 +71,68 @@ class PNBPController extends Controller
             $persentase = ($validated['realisasi_pnbp'] / $validated['target_pnbp']) * 100;
         }
 
-        $data = $request->all();
+        $data               = $request->all();
         $data['persentase'] = round($persentase, 2);
 
         PNBP::create($data);
 
         return redirect()->route('pnbp.index')->with('success', 'Data PNBP berhasil ditambahkan');
     }
+
+    public function edit($id)
+    {
+        $pnbp = PNBP::findOrFail($id);
+    
+        return view('pnbp.edit', compact('pnbp'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'satuan_kerja'       => 'required',
+            'lelang'             => 'nullable|numeric',
+            'uang'               => 'nullable|numeric',
+            'uang_pengganti'     => 'nullable|numeric',
+            'penjualan_langsung' => 'nullable|numeric',
+            'total'              => 'nullable|numeric',
+            'realisasi_pnbp'     => 'nullable|numeric',
+            'target_pnbp'        => 'nullable|numeric',
+            'keterangan'         => 'nullable',
+            'periode_bulan'      => 'required',
+        ]);
+
+        $persentase = 0;
+        if ($validated['target_pnbp'] != 0) {
+            $persentase = ($validated['realisasi_pnbp'] / $validated['target_pnbp']) * 100;
+        }
+
+        $data               = $request->all();
+        $data['persentase'] = round($persentase, 2);
+
+        $pnbp = PNBP::findOrFail($id);
+        $pnbp->update($data);
+
+        return redirect()->route('pnbp.index')->with('success', 'Data PNBP berhasil diperbarui');
+    }
+
+    public function destroy($id)
+    {
+        $pnbp = PNBP::findOrFail($id);
+        $pnbp->delete();
+
+        return redirect()->route('pnbp.index')->with('success', 'Data PNBP berhasil dihapus');
+    }
+
     public function export(Request $request)
     {
         $bulan = $request->query('bulan');
 
         $data =
-            $bulan && $bulan !== 'all'
-                ? PNBP::where('periode_bulan', $bulan)
-                    ->get()
-                    ->makeHidden(['created_at', 'updated_at'])
-                : PNBP::all()->makeHidden(['created_at', 'updated_at']);
+        $bulan && $bulan !== 'all'
+            ? PNBP::where('periode_bulan', $bulan)
+            ->get()
+            ->makeHidden(['created_at', 'updated_at'])
+            : PNBP::all()->makeHidden(['created_at', 'updated_at']);
 
         return Excel::download(new PNBPExport($data), 'pnbp_export.xlsx');
     }

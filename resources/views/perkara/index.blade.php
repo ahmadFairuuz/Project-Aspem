@@ -11,7 +11,7 @@
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
-                    @if (Auth::user()->role === 'user')
+                    @if (in_array(Auth::user()->role, ['user', 'superadmin']))
                     <a href="{{ route('perkara.create') }}" class="btn  btn-primary">Tambah Perkara</a>
                     @endif
                     @if (!in_array(Auth::user()->role, ['user', 'kajati']))
@@ -19,7 +19,7 @@
                     @endif
                 </div>
                 <div>
-                    @if (Auth::user()->role === 'user')
+                    @if (in_array(Auth::user()->role, ['user', 'superadmin'])))
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#importModal">
                         <i class="fas fa-file-import mr-1"></i>Import
                     </button>
