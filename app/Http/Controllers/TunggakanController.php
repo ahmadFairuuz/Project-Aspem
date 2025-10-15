@@ -18,7 +18,6 @@ class TunggakanController
             // Admin bisa lihat semua data
             $data = Tunggakan::orderBy('created_at', 'desc')->paginate(10);
         } else {
-            // User biasa hanya lihat data sesuai kabupaten_id mereka
             $data = Tunggakan::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->paginate(10);
         }
 

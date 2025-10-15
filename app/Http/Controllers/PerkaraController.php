@@ -22,7 +22,6 @@ class PerkaraController extends Controller
             // Admin bisa lihat semua data
             $perkara = Perkara::orderBy('created_at', 'desc')->get();
         } else {
-            // User biasa hanya lihat data sesuai kabupaten_id mereka
             $perkara = Perkara::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->get();
         }
 

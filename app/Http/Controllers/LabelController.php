@@ -1,19 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Label;
 use App\Models\Perkara;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-
-class LabelController 
+class LabelController
 {
-   public function index()
+    public function index()
     {
         $user = Auth::user(); // ambil user yang sedang login
 
@@ -21,11 +19,7 @@ class LabelController
             // Admin bisa lihat semua data
             $label = Label::orderBy('created_at', 'desc')->get();
         } else {
-            // User biasa hanya lihat data sesuai kabupaten_id mereka
             $label = Label::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->get();
-        }
-        if (in_array($user->role, ['kajati', 'validator'])) {
-            abort(403, 'Akses ditolak.');
         }
 
         return view('label.label', compact('label'));
@@ -37,9 +31,6 @@ class LabelController
             $satkerUsers = User::select('id', 'satuan_kerja')->distinct()->get();
         } else {
             $satkerUsers = collect([$user]);
-        }
-        if (in_array($user->role, ['kajati', 'validator'])) {
-            abort(403, 'Akses ditolak');
         }
         return view('label.create', compact('satkerUsers', 'user'));
     }
@@ -76,7 +67,7 @@ class LabelController
     }
     public function pisahkanLabel()
     {
-        $dataAwal = DB::table('perkara')->get(); // Ganti dengan nama tabel awalmu
+        $dataAwal = DB::table('perkara')->get();
 
         foreach ($dataAwal as $row) {
             $registerPerkara   = $row->register_perkara;
@@ -139,15 +130,14 @@ class LabelController
 
         return redirect()->route('label.index')->with('success', 'Data berhasil di hapus');
     }
-public function generate($id)
-{
-    $item = Label::findOrFail($id);
+    public function generate($id)
+    {
+        $item = Label::findOrFail($id);
 
-    $qrData = "Register Perkara: {$item->register_perkara}\nBarang Bukti: {$item->barang_bukti}\nTanggal: {$item->tanggal_barbuk}\nKeterangan: {$item->keterangan}";
+        $qrData = "Register Perkara: {$item->register_perkara}\nBarang Bukti: {$item->barang_bukti}\nTanggal: {$item->tanggal_barbuk}\nKeterangan: {$item->keterangan}";
 
-    $qrCode = QrCode::size(300)->generate($qrData);
+        $qrCode = QrCode::size(300)->generate($qrData);
 
-    return view('label.qrcode', compact('item', 'qrCode'));
+        return view('label.qrcode', compact('item', 'qrCode'));
+    }
 }
-}
-

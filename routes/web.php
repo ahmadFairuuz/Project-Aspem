@@ -20,13 +20,10 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/barang-rampasan', [BarangRampasanController::class, 'index'])->name('barang-rampasan.index');
-    route::delete('/barang-rampasan/delete{id}', [BarangRampasanController::class, 'destroy'])->name('barang-rampasan.destroy');
     Route::get('/barang-rampasan/export', [BarangRampasanController::class, 'export'])->name('barang-rampasan.export');
-    Route::post('/barang-rampasan/import', [BarangRampasanController::class, 'import'])->name('barang-rampasan.import');
 
     Route::get('/perkara', [PerkaraController::class, 'index'])->name('perkara.index');
     Route::get('/perkara/export', [PerkaraController::class, 'export'])->name('perkara.export');
-    //KAJATI TIDAK BISA AKSES
     Route::get('/perkara/validasi', [PerkaraController::class, 'validasi'])->name('perkara.validasi')->middleware('role-deny:kajati');
     Route::patch('/perkara/{id}/status', [PerkaraController::class, 'updateStatus'])->name('perkara.updateStatus')->middleware('role-deny:kajati');
 
@@ -40,6 +37,9 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/rekap-barang-rampasan/export', [RekapBarangRampasanController::class, 'export'])->name('rekap-barang-rampasan.export');
 
     Route::middleware('role-deny:validator,kajati')->group(function () {
+        route::delete('/barang-rampasan/delete{id}', [BarangRampasanController::class, 'destroy'])->name('barang-rampasan.destroy');
+        Route::post('/barang-rampasan/import', [BarangRampasanController::class, 'import'])->name('barang-rampasan.import');
+
         Route::get('/label', [LabelController::class, 'index'])->name('label.index');
         route::get('/label/create', [LabelController::class, 'create'])->name('label.create');
         route::post('/label/store', [LabelController::class, 'store'])->name('label.store');

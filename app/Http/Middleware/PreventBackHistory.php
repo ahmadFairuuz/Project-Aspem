@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -13,16 +12,16 @@ class PreventBackHistory
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-   public function handle(Request $request, Closure $next): Response
-{
-    $response = $next($request);
+    public function handle(Request $request, Closure $next): Response
+    {
+        $response = $next($request);
 
-    if ($response instanceof \Illuminate\Http\Response || $response instanceof \Illuminate\Http\JsonResponse) {
-        $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
-        $response->header('Pragma', 'no-cache');
-        $response->header('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
+        if ($response instanceof \Illuminate\Http\Response  || $response instanceof \Illuminate\Http\JsonResponse) {
+            $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
+            $response->header('Pragma', 'no-cache');
+            $response->header('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
+        }
+
+        return $response;
     }
-
-    return $response;
-}
 }

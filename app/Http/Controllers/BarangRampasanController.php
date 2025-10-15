@@ -17,16 +17,6 @@ class BarangRampasanController extends Controller
     {
         $user = Auth::user(); // ambil user yang sedang login
         $barangRampasan = BarangRampasan::all();
-        // if ($user->hasGlobalAccess()) {
-        //     // Admin bisa lihat semua data
-        //     $barangRampasan = BarangRampasan::orderBy('created_at', 'desc')->get();
-        // } else {
-        //     // User biasa hanya lihat data sesuai kabupaten_id mereka
-        //     $barangRampasan = BarangRampasan::where('kabupaten_id', $user->kabupaten_id)->orderBy('created_at', 'desc')->get();
-        // }
-        if (Auth::user()->role === 'kajati') {
-            abort(403, 'Akses ditolak.');
-        }
         return view('barang_rampasan.index', compact('barangRampasan'));
     }
 
@@ -105,24 +95,6 @@ class BarangRampasanController extends Controller
 
         return redirect()->route('barang-rampasan.index')->with('success', 'Data berhasil diperbarui.');
     }
-
-    // public function updateBidang(Request $request, $id)
-    // {
-    //     // Validasi input bidang hanya boleh 'Pidsus' atau 'Pidum'
-    //     $request->validate([
-    //         'bidang' => 'required|in:Pidsus,Pidum',
-    //     ]);
-
-    //     // Temukan data berdasarkan ID
-    //     $barang = BarangRampasan::findOrFail($id);
-
-    //     // Update bidang
-    //     $barang->bidang = $request->bidang;
-    //     $barang->save();
-
-    //     // Kembali ke halaman sebelumnya dengan pesan sukses
-    //     return back()->with('success', 'Bidang berhasil diperbarui');
-    // }
 
     public function destroy(BarangRampasan $barangRampasan)
     {

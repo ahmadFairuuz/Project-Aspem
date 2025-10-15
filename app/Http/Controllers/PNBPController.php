@@ -15,14 +15,10 @@ class PNBPController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
-        // Ambil bulan dari request atau default bulan ini
         $bulan = $request->input('bulan', now()->format('Y-m'));
 
-        // Query awal
         $query = PNBP::where('periode_bulan', $bulan);
 
-        // Jika bukan admin/global access, filter berdasarkan kabupaten user
         if (! $user->hasGlobalAccess()) {
             $query->where('satuan_kerja', $user->satuan_kerja);
         }

@@ -24,7 +24,6 @@ class RekapBarangRampasanController
             // Admin bisa lihat semua data
             $rekap = RekapBarangRampasan::orderBy('created_at', 'desc')->get();
         } else {
-            // User biasa hanya lihat data sesuai kabupaten_id mereka
             $rekap = RekapBarangRampasan::where('satuan_kerja', $user->satuan_kerja)->orderBy('created_at', 'desc')->get();
         }
 
@@ -49,8 +48,6 @@ class RekapBarangRampasanController
 
         return view('rekap_rampasan.index', compact('rekap'));
     }
-
-    // Tampilkan form input
     public function create()
     {
         $user = Auth::user();
