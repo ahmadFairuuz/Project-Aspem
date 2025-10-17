@@ -1,15 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\BarangRampasan;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\BarangRampasanExport;
 use App\Exports\BarangRampasanImport;
+use App\Models\BarangRampasan;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BarangRampasanController extends Controller
 {
@@ -113,5 +112,38 @@ class BarangRampasanController extends Controller
     public function export()
     {
         return Excel::download(new BarangRampasanExport(), 'barang-rampasan.xlsx');
+    }
+    public function simpanPengambilan(Request $request, $id)
+    {
+        $request->validate([
+            'tgl_pengambilan' => 'required|date',
+            'keterangan_pengambilan' => 'nullable|string',
+        ]);
+
+        $barang = BarangRampasan::findOrFail($id);
+        $barang->status = 'PENGAMBILAN';
+        $barang->tgl_pengambilan = $request->tgl_pengambilan;
+        $barang->keterangan_pengambilan = $request->keterangan_pengambilan;
+        $barang->tgl_pengembalian = null;
+        $barang->keterangan_pengembalian = null;
+        $barang->save();
+
+        return redirect()->back()->with('success', 'Barang berhasil dipinjam.');
+    }
+
+    public function simpanPengembalian(Request $request, $id)
+    {
+        $request->validate([
+            'tgl_pengembalian' => 'required|date',
+            'keterangan_pengembalian' => 'nullable|string',
+        ]);
+
+        $barang = BarangRampasan::findOrFail($id);
+        $barang->status = 'PENGEMBALIAN';
+        $barang->tgl_pengembalian = $request->tgl_pengembalian;
+        $barang->keterangan_pengembalian = $request->keterangan_pengembalian;
+        $barang->save();
+
+        return redirect()->back()->with('success', 'Barang berhasil dikembalikan.');
     }
 }

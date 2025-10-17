@@ -20,12 +20,17 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/barang-rampasan', [BarangRampasanController::class, 'index'])->name('barang-rampasan.index');
-    Route::get('/barang-rampasan/export', [BarangRampasanController::class, 'export'])->name('barang-rampasan.export');
+    Route::post('/barang-rampasan/pengambilan/{id}', [BarangRampasanController::class, 'simpanPengambilan'])->name('barang-rampasan.pengambilan');
+    Route::post('/barang-rampasan/pengembalian/{id}', [BarangRampasanController::class, 'simpanPengembalian'])->name('barang-rampasan.pengembalian');
 
     Route::get('/perkara', [PerkaraController::class, 'index'])->name('perkara.index');
     Route::get('/perkara/export', [PerkaraController::class, 'export'])->name('perkara.export');
-    Route::get('/perkara/validasi', [PerkaraController::class, 'validasi'])->name('perkara.validasi')->middleware('role-deny:kajati');
-    Route::patch('/perkara/{id}/status', [PerkaraController::class, 'updateStatus'])->name('perkara.updateStatus')->middleware('role-deny:kajati');
+    Route::get('/perkara/validasi', [PerkaraController::class, 'validasi'])
+        ->name('perkara.validasi')
+        ->middleware('role-deny:kajati');
+    Route::patch('/perkara/{id}/status', [PerkaraController::class, 'updateStatus'])
+        ->name('perkara.updateStatus')
+        ->middleware('role-deny:kajati');
 
     Route::get('/pnbp', [PNBPController::class, 'index'])->name('pnbp.index');
     Route::get('/pnbp/export', [PNBPController::class, 'export'])->name('pnbp.export');
@@ -83,5 +88,4 @@ Route::middleware(['auth', 'prevent-back'])->group(function () {
         Route::get('/export', [AkunController::class, 'export']);
         Route::post('/import', [AkunController::class, 'import']);
     });
-
 });
