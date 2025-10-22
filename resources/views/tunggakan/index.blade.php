@@ -10,7 +10,7 @@
                 <h5 class="mb-0">Tabel Data Tunggakan</h5>
             </div>
             <div>
-               @if (in_array(Auth::user()->role, ['user', 'admin']))
+               @if (in_array(Auth::user()->role, ['user', 'superadmin']))
                 <a href="{{ route('tunggakan.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus mr-1"></i>Tambah Data
                 </a>

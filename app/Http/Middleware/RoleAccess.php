@@ -10,7 +10,7 @@ class RoleAccess
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next, ...$rolesDeny
+    public function handle(Request $request, Closure $next, $rolesDeny
     ) {
         $user = Auth::user();
 

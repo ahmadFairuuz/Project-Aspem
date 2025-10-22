@@ -10,7 +10,7 @@
         <div>
             <h5 class="mb-0">Tabel Rekap Barang Rampasan</h5>
         </div>
-        <div>@if (in_array(Auth::user()->role, ['user', 'admin']))
+        <div>@if (in_array(Auth::user()->role, ['user', 'superadmin']))
             <a href="{{ route('rekap-barang-rampasan.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus mr-1"></i>Tambah Data
             </a>
