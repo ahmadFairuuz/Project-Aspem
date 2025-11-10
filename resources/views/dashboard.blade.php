@@ -67,7 +67,7 @@
 
         <!-- Content Row -->
 
-        <div class="row">
+        <div class="row w-100">
 
             <!-- Area Chart -->
             {{-- <div class="card shadow mb-4">
@@ -84,27 +84,14 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
+                        <h6 class="m-0 font-weight-bold text-primary">Barang Rampasan</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-pie pt-4 pb-2">
                             <canvas id="myPieChart"></canvas>
                         </div>
+
                         <div class="mt-4 text-center small">
                             <span class="mr-2">
                                 <i class="fas fa-circle text-primary"></i> total barang rampasan yang diselesaikan
@@ -115,110 +102,82 @@
 
                         </div>
                     </div>
+
                 </div>
             </div>
-        </div>
-
-        <!-- Content Row -->
-        {{-- <div class="row">
-            <!-- Content Column -->
-            <div class="col-lg-6 mb-4">
-
-                <!-- Project Card Example -->
+            {{-- <div class="col-xl-4 col-lg-5">
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Chart Realisasi PNBP</h6>
                     </div>
+                    <!-- Card Body -->
                     <div class="card-body">
-                        <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span>
-                        </h4>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myChart"></canvas>
                         </div>
                     </div>
                 </div>
+            </div> --}}
+        </div>
 
-            </div>
-        </div> --}}
+        <div class="row">
+            <div class="w-50 ">
+                <div class="col-12">
+                    <div class="card shadow border-left-warning">
+                        <div class="card-header bg-warning text-white">
+                            <h6 class="m-0 font-weight-bold">Makna Lambang BPA</h6>
+                        </div>
+                        <div class="card-body text-dark">
+                            <div class="row align-items-center">
+                                <!-- Kolom Kiri: Gambar -->
+                                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                    <img src="{{ asset('image/logo_bpa.png') }}" alt="Logo BPA" class="img-fluid"
+                                        style="max-height: 400px; object-fit: contain;">
+                                </div>
 
-        <div class="row  ">
-            <div class="col-12">
-                <div class="card shadow border-left-warning">
-                    <div class="card-header bg-warning text-white">
-                        <h6 class="m-0 font-weight-bold">Makna Lambang BPA</h6>
-                    </div>
-                    <div class="card-body text-dark">
-                        <div class="row align-items-center">
-                            <!-- Kolom Kiri: Gambar -->
-                            <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                <img src="{{ asset('image/logo_bpa.png') }}" alt="Logo BPA" class="img-fluid"
-                                    style="max-height: 400px; object-fit: contain;">
-                            </div>
-
-                            <!-- Kolom Kanan: Teks Deskripsi -->
-                            <div class="col-md-8">
-                                <p><strong>Tiga Bintang:</strong> Trapsila Adhyaksa adalah pedoman nilai-nilai luhur
-                                    yang menjadi landasan jiwa dalam menjalankan tugas dan fungsi jajaran BPA.</p>
-                                <p><strong>Timbangan:</strong> Melambangkan keseimbangan dan keadilan yang berarti
-                                    Pemulihan Aset yang adil dan seimbang.</p>
-                                <p><strong>Batang Timbangan yang Stabil:</strong> Melambangkan kestabilan dan keamanan.
-                                </p>
-                                <p><strong>Dua Sisi Timbangan Yang Seimbang:</strong> Melambangkan keseimbangan antara
-                                    kepentingan dan kebutuhan.</p>
-                                <p><strong>Pedang Kearah Atas:</strong> Melambangkan kekuatan, keberanian, keadilan, dan
-                                    perlindungan.</p>
-                                <p><strong>Arti Kata:</strong><br>
-                                    <em>Arthasampadya (अर्थसम्पद्य)</em> – Aset yang harus dipulihkan atau diperoleh
-                                    kembali.
-                                </p>
-                                <p><strong>Warna:</strong><br>
-                                    <strong>Emas:</strong> Kemewahan, kemakmuran, kejayaan.<br>
-                                    <strong>Hitam:</strong> Melambangkan aset yang dikelola BPA.
-                                </p>
+                                <!-- Kolom Kanan: Teks Deskripsi -->
+                                <div class="col-md-8">
+                                    <p><strong>Tiga Bintang:</strong> Trapsila Adhyaksa adalah pedoman nilai-nilai luhur
+                                        yang menjadi landasan jiwa dalam menjalankan tugas dan fungsi jajaran BPA.</p>
+                                    <p><strong>Timbangan:</strong> Melambangkan keseimbangan dan keadilan yang berarti
+                                        Pemulihan Aset yang adil dan seimbang.</p>
+                                    <p><strong>Batang Timbangan yang Stabil:</strong> Melambangkan kestabilan dan keamanan.
+                                    </p>
+                                    <p><strong>Dua Sisi Timbangan Yang Seimbang:</strong> Melambangkan keseimbangan antara
+                                        kepentingan dan kebutuhan.</p>
+                                    <p><strong>Pedang Kearah Atas:</strong> Melambangkan kekuatan, keberanian, keadilan, dan
+                                        perlindungan.</p>
+                                    <p><strong>Arti Kata:</strong><br>
+                                        <em>Arthasampadya (अर्थसम्पद्य)</em> – Aset yang harus dipulihkan atau diperoleh
+                                        kembali.
+                                    </p>
+                                    <p><strong>Warna:</strong><br>
+                                        <strong>Emas:</strong> Kemewahan, kemakmuran, kejayaan.<br>
+                                        <strong>Hitam:</strong> Melambangkan aset yang dikelola BPA.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row  mt-5">
-            <div class="col-12">
-                <div class="card shadow border-left-danger">
-                    <div class="card-header bg-danger text-white">
-                        <h6 class="m-0 font-weight-bold">Struktur Pemulihan Aset Kejati Lampung</h6>
-                    </div>
-                    <div class="card-body text-dark ">
-                            <img src="{{ asset('image/Struktur.png') }}" alt="Struktur BPA" class="img-fluid w-100 px-5 "
-                               >
+            <div class=" w-50">
+                <div class="col-12">
+                    <div class="card shadow border-left-danger">
+                        <div class="card-header bg-danger text-white">
+                            <h6 class="m-0 font-weight-bold">Struktur Pemulihan Aset Kejati Lampung</h6>
+                        </div>
+                        <div class="card-body text-dark ">
+                            <img src="{{ asset('image/Struktur.png') }}" alt="Struktur BPA" class="img-fluid w-100 px-5 ">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="row  mt-5 g-4">
-
             <!-- 1. Asisten Pemulihan Aset -->
             <div class="col-md-6 mb-4">
                 <div class="card shadow h-100">
@@ -227,7 +186,8 @@
                     </div>
                     <div class="card-body">
                         <p><strong>Tugas Pokok:</strong><br>
-                            Membantu Kepala Badan Pemulihan Aset dalam perumusan kebijakan dan pelaksanaan teknis pemulihan
+                            Membantu Kepala Badan Pemulihan Aset dalam perumusan kebijakan dan pelaksanaan teknis
+                            pemulihan
                             aset.
                         </p>
                         <p>📌 <strong>Fungsi:</strong></p>
@@ -321,43 +281,54 @@
         <script src="{{ asset('sadmin2/vendor/chart.js/Chart.min.js') }} "></script>
         <script src="{{ asset('sadmin2/js/demo/chart-area-demo.js') }}"></script>
         <script src="{{ asset('sadmin2/js/demo/chart-pie-demo.js') }}"></script>
-        <script>
-            const ctx = document.getElementById('realisasiPNBPChart').getContext('2d');
-            const realisasiPNBPChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Lampung Tengah', 'Lampung Selatan', 'Lampung Utara', 'Bandar Lampung'],
-                    datasets: [{
-                        label: 'Realisasi PNBP',
-                        data: [367367536, 290000000, 250000000, 450000000],
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return 'Rp ' + value.toLocaleString('id-ID');
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        {{-- <script>
+                window.onload = function() {
+                    const ctx = document.getElementById('myChart').getContext('2d');
+                    // Ambil data dari Laravel (diubah ke JSON agar bisa dibaca JS)
+                    const pnbpData = @json($pnbpData);
+
+                    // Pisahkan label dan nilai
+                    const labels = pnbpData.map(item => item.satuan_kerja);
+                    const data = pnbpData.map(item => item.realisasi_pnbp);
+
+                    const realisasiPNBPChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Realisasi PNBP',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)'
+                                ],
+                                borderColor: [
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: function(value) {
+                                            return 'Rp ' + value.toLocaleString('id-ID');
+                                        }
+                                    }
                                 }
                             }
                         }
-                    }
+                    });
                 }
-            });
-        </script>
+            </script> --}}
     @endpush

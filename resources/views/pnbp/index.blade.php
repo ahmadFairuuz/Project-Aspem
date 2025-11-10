@@ -40,7 +40,7 @@
                                 <th>Persentase</th>
                                 <th>Keterangan</th>
                                 <th>Periode Bulan</th>
-                                @if (in_array(Auth::user()->role, ['user', 'admin']))
+                                @if (in_array(Auth::user()->role, ['user', 'superadmin']))
                                 <th width="180px">Aksi</th>
                                 @endif
                             </tr>
@@ -70,7 +70,7 @@
 
                                     <td>{{ $item->keterangan }}</td>
                                     <td>{{ $item->periode_bulan }}</td>
-                                    @if (in_array(Auth::user()->role, ['user', 'admin']))
+                                    @if (in_array(Auth::user()->role, ['user', 'superadmin']))
                                     <td>
                                         <a href="{{ route('pnbp.edit', $item->id) }}"
                                             class="btn btn-sm btn-warning">Edit</a>

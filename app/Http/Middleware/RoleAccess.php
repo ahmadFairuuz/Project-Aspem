@@ -10,11 +10,14 @@ class RoleAccess
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next, $rolesDeny
-    ) {
+    public function handle(Request $request, Closure $next, $rolesDeny)
+    {
         $user = Auth::user();
 
-        if ($user && in_array($user->role, $rolesDeny)) {
+        // Ubah string parameter jadi array (pisahkan dengan koma)
+        $roles = is_array($rolesDeny) ? $rolesDeny : explode(',', $rolesDeny);
+
+        if ($user && in_array($user->role, $roles)) {
             abort(404);
         }
 
